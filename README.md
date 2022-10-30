@@ -1,1 +1,1 @@
-# StudentManagement QuocKy
+# StudentManagement HuuNghia
