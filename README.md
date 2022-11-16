@@ -1,1 +1,1 @@
-# SaleApp
+# Student Management
