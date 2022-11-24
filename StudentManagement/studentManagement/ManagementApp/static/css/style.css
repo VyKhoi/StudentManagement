@@ -1,7 +1,98 @@
 * {
-    font-family: Tahoma;
+    font-family: cursive;
 }
 
 body {
-    background-color: lightblue;
+    background-color: rgba(255, 255, 255, 0.858);
+}
+a{
+  color: black !important;
+}
+
+.icon_school{
+  width: 5%;
+}
+.title_nav{
+  font-size: medium;
+}
+.carousel {
+  width:100%;
+   max-height: 400px;
+     overflow: hidden;
+}
+
+.carousel-inner > .item > img {
+
+}
+
+.header_nav_title{
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  /* background-color: rgb(253, 38, 0); */
+}
+.header_nav_title a{
+  padding: 0;
+}
+
+/*căn chỉnh header dựa trên classs của bootstrap  */
+.nav-item a{
+  font-size: 1vw;
+}
+.nav-item i{
+  display: block;
+  padding-left: 40%;
+  padding-bottom: 5px;
+  font-size: 1.4vw;
+}
+.header_nav_title  h1{
+  font-size: 1.5vw;
+
+}
+.navbar{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.navbar-collapse{
+  margin-left: 5%;
+}
+
+.nav_block > div{
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.nav_block ul{
+  /* position: relative; */
+  padding-left: 4%;
+}
+.nav_items{
+  /* position: absolute;
+  bottom: 10%;
+  z-index: 100 !; */
+  background-color: rgb(237, 237, 237);
+  width: 100%;
+  position: relative;
+}
+.nav_items i{
+  display: inline;
+  padding: 0;
+  font-size: 0.7vw;
+}
+.nav_items a{
+  font-size: 0.7vw;
+  /* color: rgb(255, 0, 0); */
+}
+.nav_items li{
+  font-size: 1.3vw;
+
+  border-right-style: solid;
+  border-width: 1px;
+  border-bottom-right-radius: 10px;
+}
+
+.nav_user_login{
+  /* background-color: red; */
+  position: absolute;
+  right: 5%;
 }
