@@ -1,0 +1,41 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1 class="text-center text-success">SIGN UP</h1>
+
+{% if err_msg %}
+<div class="alert alert-danger">
+    {{err_msg}}
+</div>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data" action="/register">
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" class="form-control" required id="name" placeholder="Enter your name..." name="name">
+        <label for="name">Name</label>
+    </div>
+
+    <div class="form-floating mb-3 mt-3">
+        <input type="text" class="form-control" required id="username" placeholder="Enter your username..." name="username">
+        <label for="username">Username</label>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <input type="password" class="form-control" required id="password" placeholder="Enter your password..." name="password">
+        <label for="password">Password</label>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <input type="password" class="form-control" required id="confirm" placeholder="Enter confirm password..."name="confirm">
+        <label for="confirm">Confirm Password</label>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <input type="file" class="form-control" id="avatar" name="avatar">
+        <label for="avatar">Avatar</label>
+    </div>
+    <div>
+        <input type="submit" value="Đăng ký" class="btn btn-danger" />
+    </div>
+</form>
+{% endblock %}

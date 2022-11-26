@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1 class="text-center text-success">SIGN IN</h1>
+
+{% if err_msg %}
+<div class="alert alert-danger">
+    {{err_msg}}
+</div>
+{% endif %}
+
+<form method="post" action="/login">
+   <div class="form-floating mb-3 mt-3">
+        <input type="text" class="form-control" required id="username" placeholder="Please enter your username..." name="username">
+        <label for="username">Username</label>
+    </div>
+
+    <div class="form-floating mt-3 mb-3">
+        <input type="password" class="form-control" required id="password" placeholder="Enter password..." name="password">
+        <label for="password">Password</label>
+    </div>
+    <div>
+        <input type="submit" value="Login" class="btn btn-danger" />
+    </div>
+</form>
+{% endblock %}
