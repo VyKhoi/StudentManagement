@@ -6,9 +6,20 @@ import cloudinary
 
 app = Flask(__name__)
 
-cloudinary.config(cloud_name = "dssijhrst", api_key = "979849377371891", api_secret ="3V_MpBv1G_D-gn1z5VJonRaVX-E")
-babel = Babel(app=app)
+# co so du lieu
+app.secret_key = '4567890sdfghjklcvbnvb4567fg6yug'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:%s@localhost/btl?charset=utf8mb4' % quote('123456')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db = SQLAlchemy(app=app)
 
-@babel.Localeselector
-def load_locale():
-    return 'vi'
+app.config['PAGE_SIZE'] = 3
+
+
+
+
+# cloudinary.config(cloud_name = "dssijhrst", api_key = "979849377371891", api_secret ="3V_MpBv1G_D-gn1z5VJonRaVX-E")
+# babel = Babel(app=app)
+#
+# @babel.Localeselector
+# def load_locale():
+#     return 'vi'

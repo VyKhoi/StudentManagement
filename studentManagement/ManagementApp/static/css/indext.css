@@ -1,0 +1,167 @@
+.box_content{
+    /* background-color: rgb(135, 255, 98); */
+}
+.link_news{
+    text-decoration: none;
+}
+
+.news{
+    display: flex;
+    background-color: rgba(219, 238, 255, 0.868);
+    margin-bottom: 10px;
+    max-height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size: 1vw;
+
+    /* can chinh hover */
+    transition: 1s;
+}
+.news:hover{
+    transform: translateX(50px);
+    background-color: rgb(177, 227, 255);
+}
+.news p{
+
+}
+.box_news_contain{
+   width: 70%;
+   overflow: hidden;
+   padding-left: 10px;
+   /* background-color: red; */
+}
+.box_news_contain > h2 {
+    background-color: rgb(171, 242, 255);
+    padding-left: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-style: solid;
+    border-width: 1px;
+}
+.news_content{
+
+    margin-top: -25px;
+    background-color: yellow;
+    max-height: 100px;
+
+}
+
+.img_news{
+    width:30%;
+    height: 200px;
+    padding: 5px;
+    border-radius: 20px;
+}
+.pagination_box_news{
+    width: 100%;
+    background-color: rgba(191, 191, 191, 0.158);
+    padding: 0;
+    margin: 0;
+}
+.pagination_common_news{
+    margin-left: 5%;
+}
+.header_news{
+    margin-top: 2%;
+    color: rgb(246, 86, 72);
+}
+   /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+        .row.content {
+            height: 1500px
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: hsl(0, 0%, 93%);
+            height: 100%;
+            padding: 0;
+        }
+        .title_side_nav{
+            background-color: black;
+            color: rgb(254, 254, 254);
+            font-size: 1.4vw;
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+        }
+        .side_nav_news_list{
+            margin-top: 5px;
+           
+            
+        }
+        .side_nav_news_list li{
+            width: 100%;
+            margin-bottom: 2px;
+            transition: 0.5s;
+        }
+        .side_nav_news_list li:hover{
+            transform: scale(1.1);
+        }
+        .side_nav_news_list a{
+            background-color: rgb(84, 84, 84);
+            color: white !important;
+            text-decoration: none;
+            display: block;
+            padding: 5px;
+        }
+       
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: rgb(255, 251, 251);
+            color: white;
+            padding: 15px;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+
+            .row.content {
+                height: auto;
+            }
+        }
+
+    
+
+
+
+/* căn chỉnh liên kết khác */
+.box_other_link{
+    padding: 20px;
+    margin-top: 4%;
+    border-top-style: double;
+    background-color: rgba(123, 123, 123, 0.144);
+}
+
+.box_other_page_link{
+    /* background-color: red; */
+    /* border-style: solid; */
+    text-align: center;
+        background-color: white;
+
+}
+.box_location{
+    /* background-color: yellow; */
+        background-color: white;
+
+}
+.box_other_page_link >h1{
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    color: rgb(2, 2, 96);
+    border-bottom-style: groove;
+}
+
+.box_other_page_link img{
+    width: 40%;
+}
+.box_other_page_link a{
+    margin: 5px;
+}
+.box_contain_orther_page_link{
+    /* display: flex;
+    justify-content: center; */
+}

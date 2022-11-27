@@ -116,21 +116,20 @@
         <div>
 
 
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-dark" type="button">Search</button>
+            <form class="d-flex" action="/">
+                <input class="form-control me-2" name="keyword" type="text" placeholder="Search">
+                <button class="btn btn-dark" type="submit">Search</button>
             </form>
         </div>
     </nav>
 
     <div class="row">
         <div class="topnav">
-            <a class="active" href="#home">Home</a>
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
+            <a class="active" href="#home"><i class="fa-solid fa-house-user"></i> Home</a>
+            <a href="/"><i class="fa-solid fa-earth-americas"></i> News</a>
+           
 
-            <button id="login_bt" onclick="click_login()">Đăng Nhập</button>
+            <button id="login_bt" onclick="click_login()"><i class="fa-solid fa-arrow-right-to-bracket"></i> Đăng Nhập</button>
         </div>
     </div>
 </div>

@@ -17,9 +17,13 @@
 <!--    css-->
       <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet"/>
     <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet"/>
+   <link href="{{ url_for('static', filename='css/indext.css') }}" rel="stylesheet"/>
+  
 
 </head>
 <body>
+ 
+
     {% block header %}
         {% include 'layout/header.html' %}
     {% endblock %}
@@ -28,6 +32,10 @@
     </div>
     {% block footer %}
         {% include 'layout/footer.html' %}
+    {% endblock %}
+
+    {% block script%}
+        
     {% endblock %}
 </body>
 </html>

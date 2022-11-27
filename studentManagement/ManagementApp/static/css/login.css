@@ -80,6 +80,7 @@
     position: fixed;
     top: 5%;
     left: 10%;
+    right: 10%;
     /* z-index: 5000 ; */
     background-image: linear-gradient(rgb(100, 222, 238),
     rgb(11, 181, 223),rgb(40, 176, 197),rgb(6, 119, 185),rgb(1, 81, 147),rgb(4, 31, 42));
