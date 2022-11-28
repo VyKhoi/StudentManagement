@@ -5,6 +5,7 @@ from StudentManagement.studentManagement.ManagementApp.models import *
 from StudentManagement.studentManagement.ManagementApp import db
 from sqlalchemy import select
 
+
 def get_data_news():
     return news.query.all()
 
@@ -33,16 +34,36 @@ def get_count_type_news(type_news):
 
 if __name__ == "__main__":
     with app.app_context():
+
+
+        #
+        # list_role  = role.query.all()
+        #
+        # print(list_role[0].permissions)
+
+
+        #
+        list_per = permission.query.all()
+        print(list_per[1].role)
+
+
+
         # print(get_data_news())
         #
         # print(get_news())
         #
-        i = get_count_type_news(1)
-        n = news(id = "3" , header = "ban tin buoi sang")
+
+        # c = news.query.get('')
+        # c = get_data_news()
+        # print(c)
+        # for i in c:
+        #     print(i.Users.name)
+        # print(c.Users.hometown)
+        # print(c.users)
 
 
-        print(i)
-        print(n)
+        # print(i)
+        # print(n)
         # for i in get_news():
         #     print(i)
-        print(get_news_type(1))
+        # print(get_news_type(1)

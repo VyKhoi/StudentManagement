@@ -1,6 +1,6 @@
 from enum import Enum as UserEnum
 from sqlalchemy import Column, Integer, String, Float, Text, Boolean, ForeignKey, Enum
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 from StudentManagement.studentManagement.ManagementApp import app,db
 
 
@@ -33,55 +33,57 @@ class User(BaseModel):
     image = Column(String(50), nullable=False)
     active = Column(String(50), nullable=False)
 
-    news = relationship('news', backref='User', lazy=True)
+
+    news = relationship('news', backref='Users', lazy=True)
+
+    # role = relationship('role', secondary='user_role', lazy='subquery',
+    #                     backref=backref('Users', lazy=True))
 
     def __str__(self):
         return self.name
 
-# class Class(db.Model):
-#     __tablename__='class'
-#
-#     id_class = Column(String(50), primary_key=True, nullable=False)
-#     name = Column(String(50), nullable = False)
-#
-#
-#     def __str__(self):
-#         return self.name
-#
-# class Student(BaseModel):
-#     graduated_highschool = Column(Boolean, default=False)
-#     conduct = Column(String(20), nullable=False)
-#
-# class Teacher(BaseModel):
-#     __tablename__ ='teacher'
-#     classes = relationship('class', backref='teacher', lazy=True)
-#
-# class Subject(db.Model):
-#     __tablename__ ='subject'
-#
-#     id_subject = Column(String(30), primary_key=True, nullable=False)
-#     name = Column(String(50), nullable=False)
-#     description = Column(Text)
-#
-# class Score(db.Model):
-#     __tablename__='score'
-#
-#     id_score = Column(Integer, primary_key=True, autoincrement=True)
-#     student_id = Column(Integer, ForeignKey(Student.id), autoincrement=True)
-#     value = Column(Float, nullable=False)
-#     type_value = Column(Integer, nullable=False)
-#     subject_id = Column(String(30), ForeignKey(Subject.id_subject), nullable=False)
-
 
 # class nài dùng để cấu trúc tin tức
+
+
+#
+class role(db.Model):
+    __tablename__='role'
+    role = Column(String(50), primary_key=True, nullable=False)
+
+
+
+class permission(db.Model):
+    __tablename__ = 'permission'
+    id = Column(String(50), primary_key=True, nullable=False)
+    permission_name = Column(String(50), nullable=False)
+    role = relationship('role', secondary='role_permission', lazy = 'subquery',
+                        backref = backref('permissions', lazy=True))
+
+
+role_permission = db.Table('role_permission',
+    Column('role', String(50), ForeignKey(role.role), primary_key=True, nullable=False),
+    Column('id_per', String(50), ForeignKey(permission.id), primary_key=True, nullable=False))
+
+user_role = db.Table('user_role',
+    Column('role', String(50), ForeignKey(role.role), primary_key=True, nullable=False),
+    Column('id_user', String(50), ForeignKey(User.id), primary_key=True, nullable=False))
+
+
+
+
+
 class news(db.Model):
     __tablename__='news'
-    id = Column(String(30), primary_key=True, nullable=False)
+    id = Column(String(50), primary_key=True, nullable=False)
     header = Column(String(1000), nullable = False)
     content = Column(String(7000), nullable = False)
     date_push =Column(String(50), nullable=False)
     image = Column(String(500), nullable=False)
     type =  Column(String(50), nullable=False)
+
+
+
     id_author = Column(String(50), ForeignKey(User.id), nullable=False)
 
 
