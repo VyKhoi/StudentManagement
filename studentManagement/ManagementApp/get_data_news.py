@@ -7,12 +7,12 @@ from sqlalchemy import select
 
 
 def get_data_news():
-    return news.query.all()
+    return News.query.all()
 
 
 
 def get_news():# nó có bao gồm tên tác giả
-    return news.query.join(User,news.id_author == User.id).add_columns(User.name).all()
+    return News.query.join(User,News.id_author == User.id).add_columns(User.name).all()
     # return User.query.all()
 
 def get_news_type(type,page = 1,kw  = None): #kw là từ khóa để tìm kiếm tin tức
@@ -20,16 +20,16 @@ def get_news_type(type,page = 1,kw  = None): #kw là từ khóa để tìm kiế
     page_size = app.config['PAGE_SIZE']
     start = (page - 1) * page_size
     end = start + page_size
-    list_news =  news.query.filter(news.type.__eq__(type)).join(User,news.id_author == User.id).add_columns(User.name)
+    list_news =  News.query.filter(News.type.__eq__(type)).join(User,News.id_author == User.id).add_columns(User.name)
 
     if kw:
-        list_news = list_news.filter(news.header.contains(kw))
+        list_news = list_news.filter(News.header.contains(kw))
 
 
     return list_news.slice(start,end).all()
 
 def get_count_type_news(type_news):
-    return news.query.filter(news.type.__eq__(type_news)).count()
+    return News.query.filter(News.type.__eq__(type_news)).count()
 
 
 if __name__ == "__main__":
@@ -43,7 +43,7 @@ if __name__ == "__main__":
 
 
         #
-        list_per = permission.query.all()
+        list_per = Permission.query.all()
         print(list_per[1].role)
 
 
