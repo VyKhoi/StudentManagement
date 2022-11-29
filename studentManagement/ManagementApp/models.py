@@ -208,6 +208,7 @@ class Rule(db.Model):
 
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()
-        # c = News.query.get(1)
-        # print(c.User.name)
+        # db.create_all()
+        c = News.query.get('n:00001')
+        print(c.User.name)
+        #khoi da commit
