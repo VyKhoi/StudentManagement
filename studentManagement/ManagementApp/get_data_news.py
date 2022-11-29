@@ -2,7 +2,7 @@
 
 
 from StudentManagement.studentManagement.ManagementApp.models import *
-from StudentManagement.studentManagement.ManagementApp import db
+from StudentManagement.studentManagement.ManagementApp import db,app
 from sqlalchemy import select
 
 
@@ -34,18 +34,18 @@ def get_count_type_news(type_news):
 
 if __name__ == "__main__":
     with app.app_context():
-
-
+        c = Class.query.get('l1')
+        print(c.User.name)
+        print(c.School_Year.name)
+        # # list_role  = role.query.all()
+        # #
+        # # print(list_role[0].permissions)
         #
-        # list_role  = role.query.all()
         #
-        # print(list_role[0].permissions)
-
-
+        # #
+        # list_per = Permission.query.all()
+        # print(list_per[1].role)
         #
-        list_per = Permission.query.all()
-        print(list_per[1].role)
-
 
 
         # print(get_data_news())
