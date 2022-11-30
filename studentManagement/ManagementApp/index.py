@@ -5,7 +5,8 @@ from flask import render_template, request, redirect
 from StudentManagement.studentManagement.ManagementApp.models import *
 from StudentManagement.studentManagement.ManagementApp import db,app
 from StudentManagement.studentManagement.ManagementApp import get_data_news
-
+from StudentManagement.studentManagement.ManagementApp.management_database import *
+from flask_admin import *
 @app.route("/")
 def main():
     # xử lý phân trang

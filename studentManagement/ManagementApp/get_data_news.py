@@ -37,33 +37,3 @@ if __name__ == "__main__":
         c = Class.query.get('l1')
         print(c.User.name)
         print(c.School_Year.name)
-        # # list_role  = role.query.all()
-        # #
-        # # print(list_role[0].permissions)
-        #
-        #
-        # #
-        # list_per = Permission.query.all()
-        # print(list_per[1].role)
-        #
-
-
-        # print(get_data_news())
-        #
-        # print(get_news())
-        #
-
-        # c = news.query.get('')
-        # c = get_data_news()
-        # print(c)
-        # for i in c:
-        #     print(i.Users.name)
-        # print(c.Users.hometown)
-        # print(c.users)
-
-
-        # print(i)
-        # print(n)
-        # for i in get_news():
-        #     print(i)
-        # print(get_news_type(1)

@@ -3,7 +3,7 @@ from enum import Enum as UserEnum
 from sqlalchemy import Column, Integer, String, Float, Text, Boolean, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 from StudentManagement.studentManagement.ManagementApp import app, db
-
+import re
 
 
 class UserRole(UserEnum):
@@ -36,7 +36,7 @@ class User(BaseModel):
     in_charge_class = relationship('Class', backref='User', lazy=True)
 
     def __str__(self):
-        return self.name
+        return self.name + " | mã số :" + self.id
 
 
 class State(db.Model):
@@ -59,7 +59,9 @@ class Student(BaseModel):
 
 class Class(db.Model):
     __tablename__ = 'class'
-    id = Column(String(50), primary_key=True)
+    __init__ = res = re.sub(r'[0-9]+$', lambda x: f"{str(int(x.group()) + 1).zfill(len(x.group()))}",
+                            'cl:00005')
+    id = Column(String(50), primary_key=True,  default= res)
     name_class = Column(String(50), nullable=False)
 
 
@@ -126,6 +128,8 @@ class School_Year(db.Model):
     review = relationship('Reviews', backref='School_Year', lazy=True)
     class_in_year = relationship('Class', backref='School_Year', lazy=True)
 
+    def __str__(self):
+        return self.name + " : "+self.semester
 
 class Teaching_Class(db.Model):
     __tablename__ = 'teaching_class'
@@ -208,7 +212,7 @@ class Rule(db.Model):
 
 if __name__ == '__main__':
     with app.app_context():
-        # db.create_all()
-        c = News.query.get('n:00001')
-        print(c.User.name)
+        db.create_all()
+        # c = News.query.get('n:00001')
+        # print(c.User.name)
         #khoi da commit

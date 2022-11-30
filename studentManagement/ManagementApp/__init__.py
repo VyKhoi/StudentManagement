@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from urllib.parse import quote
 from flask_babelex import Babel
 import cloudinary
-
+from flask_admin import Admin, BaseView, expose
 app = Flask(__name__)
 
 # co so du lieu
@@ -14,6 +14,7 @@ db = SQLAlchemy(app=app)
 
 app.config['PAGE_SIZE'] = 3
 
+admin = Admin(app=app, name='Quản trị', template_mode='bootstrap4')
 
 
 
