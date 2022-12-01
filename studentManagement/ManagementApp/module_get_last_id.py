@@ -7,7 +7,7 @@ connection = mysql.connector.connect(host='localhost',
                                          password='123456')
 try:
 
-
+    print("có vào đây")
     # class
     cursor = connection.cursor()
     cursor.execute("SELECT MAX(Id) FROM class")
