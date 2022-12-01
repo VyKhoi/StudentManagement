@@ -33,6 +33,13 @@ def main():
                            count_common_news =math.ceil(count_common_news/app.config['PAGE_SIZE']),
                            count_culture_news= math.ceil(count_culture_news/app.config['PAGE_SIZE']))
 
+
+
+# test page của giáo viên
+@app.route('/teacher')
+def testpage_teacher():
+    return render_template('teacher/index.html')
+
 if __name__ == '__main__':
     with app.app_context():
         # ne = get_data_news.get_data_news()

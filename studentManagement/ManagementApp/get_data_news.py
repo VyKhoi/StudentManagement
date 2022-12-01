@@ -6,6 +6,8 @@ from StudentManagement.studentManagement.ManagementApp import db,app
 from sqlalchemy import select
 
 
+from StudentManagement.studentManagement.ManagementApp import dao
+
 def get_data_news():
     return News.query.all()
 
@@ -34,6 +36,4 @@ def get_count_type_news(type_news):
 
 if __name__ == "__main__":
     with app.app_context():
-        c = Class.query.get('l1')
-        print(c.User.name)
-        print(c.School_Year.name)
+       print(dao.get_last_id(Class))

@@ -14,7 +14,7 @@ db = SQLAlchemy(app=app)
 
 app.config['PAGE_SIZE'] = 3
 
-admin = Admin(app=app, name='Quản trị', template_mode='bootstrap4')
+admin = Admin(app=app, name='Trang quản trị', template_mode='bootstrap4')
 
 
 
