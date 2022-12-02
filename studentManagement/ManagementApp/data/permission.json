@@ -1,0 +1,38 @@
+[
+ {
+  "id": 1,
+  "permission_name": "thay đổi điểm số học sinh"
+ },
+ {
+  "id": 2,
+  "permission_name": "tạo lớp"
+ },
+ {
+  "id": 3,
+  "permission_name": "quản lý học sinh trong lớp"
+ },
+ {
+  "id": 4,
+  "permission_name": "đăng bài viết"
+ },
+ {
+  "id": 5,
+  "permission_name": "gán lớp giảng dạy"
+ },
+ {
+  "id": 6,
+  "permission_name": "thay đổi thông tin học sinh"
+ },
+ {
+  "id": 7,
+  "permission_name": "thay đổi quy định, quy tắc nhà trường"
+ },
+  {
+  "id": 8,
+  "permission_name": "đăng ký người dùng hệ thống"
+  },
+   {
+  "id": 9,
+  "permission_name": "sử dụng trang quảng trị hệ cơ sở dữ liệu"
+  }
+]

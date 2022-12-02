@@ -24,7 +24,7 @@ class User(BaseModel):
 
     username = Column(String(50), nullable=False)
     password = Column(String(50), nullable=False)
-    image = Column(String(50), nullable=False)
+    image = Column(String(1000), nullable=False)
     active = Column(String(50), nullable=False,default = "")
 
 
@@ -52,6 +52,9 @@ class Student(BaseModel):
     score = relationship('Score', backref='Student', lazy=True)
     student_class_school_year = relationship('Student_Class_SchoolYear', backref='Student', lazy=True)
     review = relationship('Reviews', backref='Student', lazy=True)
+
+    def __str__(self):
+        return self.name + " | mã số :" + str(self.id)
 
 
 class Class(db.Model):

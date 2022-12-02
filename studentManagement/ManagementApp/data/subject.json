@@ -1,0 +1,74 @@
+[
+ {
+  "id": 1,
+  "name_subject": "sinh 10"
+ },
+ {
+  "id": 2,
+  "name_subject": "sinh 11"
+ },
+ {
+  "id": 3,
+  "name_subject": "sinh 12"
+ },
+ {
+  "id": 4,
+  "name_subject": "sử 10"
+ },
+ {
+  "id": 5,
+  "name_subject": "sử 11"
+ },
+ {
+  "id": 6,
+  "name_subject": "sử 12"
+ },
+ {
+  "id": 7,
+  "name_subject": "địa 10"
+ },
+ {
+  "id": 8,
+  "name_subject": "địa 11"
+ },
+ {
+  "id": 9,
+  "name_subject": "địa 12"
+ },
+ {
+  "id": 10,
+  "name_subject": "toán 10 "
+ },
+ {
+  "id": 11,
+  "name_subject": "toán 11"
+ },
+ {
+  "id": 12,
+  "name_subject": "toán 12"
+ },
+ {
+  "id": 13,
+  "name_subject": "lý 10"
+ },
+ {
+  "id": 14,
+  "name_subject": "lý 11"
+ },
+ {
+  "id": 15,
+  "name_subject": "lý 12"
+ },
+ {
+  "id": 16,
+  "name_subject": "hóa 10"
+ },
+ {
+  "id": 17,
+  "name_subject": "hóa 11"
+ },
+ {
+  "id": 18,
+  "name_subject": "hóa 12"
+ }
+]

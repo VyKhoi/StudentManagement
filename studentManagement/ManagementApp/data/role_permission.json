@@ -1,0 +1,38 @@
+[
+ {
+  "role": "teacher",
+  "id_per": 1
+ },
+ {
+  "role": "academic_staff",
+  "id_per": 2
+ },
+ {
+  "role": "academic_staff",
+  "id_per": 3
+ },
+ {
+  "role": "academic_staff",
+  "id_per": 4
+ },
+ {
+  "role": "academic_staff",
+  "id_per": 5
+ },
+ {
+  "role": "academic_staff",
+  "id_per": 6
+ },
+ {
+  "role": "academic_staff",
+  "id_per": 8
+ },
+ {
+  "role": "school_manager",
+  "id_per": 7
+ },
+ {
+  "role": "admin",
+  "id_per": 9
+ }
+]
