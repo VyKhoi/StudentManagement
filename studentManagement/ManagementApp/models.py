@@ -6,12 +6,6 @@ from sqlalchemy.orm import relationship
 
 from StudentManagement.studentManagement.ManagementApp import app, db
 
-
-class UserRole(UserEnum):
-    User = 1
-    Admin = 2
-
-
 class BaseModel(db.Model):
     __abstract__ = True
 
@@ -31,7 +25,7 @@ class User(BaseModel):
     username = Column(String(50), nullable=False)
     password = Column(String(50), nullable=False)
     image = Column(String(50), nullable=False)
-    active = Column(String(50), nullable=False)
+    active = Column(String(50), nullable=False,default = "")
 
 
     news = relationship('News', backref='User', lazy=True)
@@ -66,7 +60,7 @@ class Class(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
 
 
-    name_class = Column(String(50), nullable=False)
+    name_class = Column(String(50   ), nullable=False)
 
 
     teaching_class = relationship('Teaching_Class', backref='Class', lazy=True)

@@ -1,0 +1,55 @@
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.register_box{
+
+    margin-bottom: 2%;
+}
+.box_contain_register_form{
+   border-left-style: solid;
+   border-right-style: solid;
+   margin: 0; 
+   padding-top: 10px;
+   padding-left: 5%;
+   padding-right: 5%;
+}
+.register_form{
+    background-color: rgba(215, 215, 215, 0.418);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bt_submit{
+    margin: 0  auto;    
+}
+body{
+    /* background-color: red; */
+}
+.register_box_role{
+    border-left-style: solid;
+}
+.register_box_role ul{
+    list-style-type: none;
+    display: flex;
+    justify-self: center;
+}
+.register_box_role ul li{
+    display: block;
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+}
+input[type=checkbox] {
+    accent-color: rgb(255, 255, 255) !important;
+  }

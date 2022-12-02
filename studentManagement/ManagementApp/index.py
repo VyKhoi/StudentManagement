@@ -40,6 +40,11 @@ def main():
 def testpage_teacher():
     return render_template('teacher/index.html')
 
+#trang đăng ký người dùng
+@app.route('/register', methods = ['get', 'post'])
+def register_create_account():
+    return render_template('register.html')
+
 if __name__ == '__main__':
     with app.app_context():
         # ne = get_data_news.get_data_news()
