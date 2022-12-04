@@ -2,7 +2,7 @@
 
 
 from StudentManagement.studentManagement.ManagementApp.models import *
-from StudentManagement.studentManagement.ManagementApp import db,app
+from StudentManagement.studentManagement.ManagementApp import db, app
 from sqlalchemy import select
 
 

@@ -32,13 +32,14 @@ def main():
                            news_culture = news_culture,
                            count_common_news =math.ceil(count_common_news/app.config['PAGE_SIZE']),
                            count_culture_news= math.ceil(count_culture_news/app.config['PAGE_SIZE']))
-
-
+@app.route('/teacher')
+def test_page_handle_class():
+    return render_template('teacher/handle-class.html')
 
 # test page của giáo viên
-@app.route('/teacher')
-def testpage_teacher():
-    return render_template('teacher/index.html')
+# @app.route('/teacher')
+# def testpage_teacher():
+#     return render_template('teacher/index.html')
 
 #trang đăng ký người dùng
 @app.route('/register', methods = ['get', 'post'])
