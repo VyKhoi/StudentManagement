@@ -3,35 +3,50 @@
 {% block title %}Đăng ký người dùng{% endblock %}
 
 {% block css_import %}
-<link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet" type="text/css"/>
+<link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet" type="text/css" />
 
 {% endblock %}
 
 {% block content %}
+
+{% if err_msg %}
+        <div class="alert box_alert" id="box_alert_fail">
+            <span class="closebtn">&times;</span>
+            <strong>Danger!</strong> Đăng ký thất bại do : {{ err_msg }}
+        </div>
+{% endif %}
+{% if success %}
+                <div class="alert success box_alert" id="box_alert_success">
+                  <span class="closebtn">&times;</span>
+                  <strong>Success!</strong> Indicates a successful or positive action.
+                </div>
+{% endif %}
+
+
 <h1 style="text-align: center; margin-top: 2%; margin-bottom: 2%;"><i class="fa-regular fa-address-card"></i> Đăng ký
     người dùng</h1>
 <div class="box_contain_register_form">
-    <form class="row register_form">
+    <form class="row register_form" method="post" enctype="multipart/form-data" action="/register">
         <div class="col-md-6 register_box">
             <label class="form-label"> <i class="fa-solid fa-signature"></i> Họ và tên</label>
-            <input required type="text" class="form-control">
+            <input required type="text" name="name_user" class="form-control">
         </div>
         <div class="col-md-6 register_box">
             <label class="form-label"> <i class="fa-regular fa-address-card"></i> CMND</label>
-            <input required type="text" class="form-control">
+            <input required type="text" name="identity_user" class="form-control">
         </div>
         <div class="col-md-12 register_box">
             <label class="form-label"> <i class="fa-solid fa-house-crack"></i> Quê quán</label>
-            <input required  type="text" class="form-control">
+            <input required type="text" name="hometown_user" class="form-control">
         </div>
         <div class="col-md-6 register_box">
             <label class="form-label"><i class="fa-regular fa-envelope"></i> Email</label>
-            <input required type="email" class="form-control">
+            <input required type="email" name="email_user" class="form-control">
         </div>
 
-         <div class="col-md-6 register_box">
+        <div class="col-md-6 register_box">
             <label class="form-label"><i class="fa-regular fa-envelope"></i> Số điện thoại</label>
-            <input required type="number" class="form-control">
+            <input required type="number" name="phone_user" class="form-control">
         </div>
 
         <div class="col-md-3 register_box">
@@ -43,11 +58,11 @@
             <label class="form-label"><i class="fa-solid fa-children"></i> Gender</label>
             <br>
             <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" name="rdo" checked>
+                <input type="radio" class="form-check-input" name="gender" value="0" checked>
                 <label class="form-check-label">Male</label>
             </div>
             <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input" name="rdo">
+                <input type="radio" class="form-check-input" value="1" name="gender">
                 <label class="form-check-label">Female</label>
             </div>
         </div>
@@ -55,40 +70,53 @@
 
         <div class="col-md-6 register_box">
             <label class="form-label"><i class="fa-solid fa-user-astronaut"></i> Upload avatar</label>
-            <input  type="file" class="form-control">
+            <input type="file" class="form-control" name="avatar_user">
         </div>
         <hr>
         <div class="row">
             <div class="col-md-7 register_box">
                 <label class="form-label"> <i class="fa-regular fa-address-card"></i> Tài Khoãn</label>
-                <input required type="text" class="form-control">
+                <input required type="text" name="username" class="form-control">
             </div>
-             <div class="col-md-5 register_box_role">
+
+
+            <!-- box role -->
+            <div class="col-md-5 register_box_role">
                 <label class="form-label">Vai trò người dùng</label>
                 <ul class="list_check_box">
                     <li>
-                        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="option1" checked>
-                        <span>Option 1</span>
+                        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="teacher"
+                            checked>
+                        <span>Giáo viên</span>
                     </li>
 
                     <li>
-                        <input class="form-check-input" type="checkbox" id="check2" name="option2" value="option2">
-                        <span>Option 2</span>
+                        <input class="form-check-input" type="checkbox" id="check2" name="option1"
+                            value="school_manager">
+                        <span>Giám hiệu</span>
                     </li>
 
                     <li>
-                        <input class="form-check-input" type="checkbox" id="check3" name="option3" value="option3">
-                        <span>Option 3</span>
+                        <input class="form-check-input" type="checkbox" id="check3" name="option1"
+                            value="academic_staff">
+                        <span>Giáo vụ</span>
                     </li>
                 </ul>
-
             </div>
-            
+
+
+
+
             <div class="col-md-7 register_box">
                 <label class="form-label"> <i class="fa-regular fa-address-card"></i> Mật Khẩu</label>
-                <input required type="text" class="form-control">
+                <input required type="text" id="password" name="password" class="form-control">
             </div>
 
+            <div class="col-md-7 register_box">
+                <label class="form-label"> <i class="fa-regular fa-address-card"></i> Xác nhận mật Khẩu</label>
+                <input required type="text" id="confirm_password" onkeyup="confirm_pass_word()" name="confirm_password"
+                    class="form-control">
+            </div>
 
         </div>
         <div class="col-md-3 bt_submit">
@@ -97,4 +125,34 @@
         </div>
     </form>
 </div>
+
+<script src="{{ url_for('static', filename='js/register.js') }}"></script>
+
+
+<script>
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function () { div.style.display = "none"; }, 600);
+        }
+    }
+
+
+    setTimeout(() => {
+        var b = document.getElementById('box_alert_fail');
+        var b2 = document.getElementById('box_alert_success');
+        if (b != null) {
+            console.log(b)
+            b.style.display = 'none'
+        }
+        if(b2 != null)
+        {
+            b2.style.display = 'none'
+        }
+    }, 3000)
+</script>
 {% endblock%}

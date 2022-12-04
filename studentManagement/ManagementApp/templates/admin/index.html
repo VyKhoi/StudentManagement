@@ -1,12 +1,19 @@
-{% extends 'admin/master.html' %}
-{% block body %}
+{% if current_user.is_authenticated %}
 
-<h1 class="text-center text-success">TRANG CHỦ QUẢN TRỊ BÁN HÀNG</h1>
-<h3>Chào <span class="text-danger"> helllllo</span>!</h3>
+    {% extends 'admin/master.html' %}
+
+    {% block body %}
+        <h1 class="text-center text-success">TRANG CHỦ QUẢN TRỊ BÁN HÀNG</h1>
+        <h3>Chào <span class="text-danger"> helllllo</span>!</h3>
+        <h1 class="text-center text-danger">xin chao </h1>
+    {% endblock %}
+
+{% else %}
+    {% include 'request_page/401.html' %}
 
 
-<h1 class="text-center text-danger">xin chao </h1>
 
-{% endblock %}
+{% endif %}
+
 
 

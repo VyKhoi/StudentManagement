@@ -168,3 +168,12 @@
     /* display: flex;
     justify-content: center; */
 }
+
+
+/* căng chỉnh css ô đã đăng nhâp */
+.box_user_loged{
+    margin: 0;
+    padding: 0;
+
+    float: right;
+}
