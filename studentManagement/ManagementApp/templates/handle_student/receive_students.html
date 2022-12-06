@@ -1,0 +1,129 @@
+{% extends 'layout/base.html'  %}
+
+{% block css_import %}
+<link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+
+
+{% block content %}
+
+{% if err_msg %}
+<div class="alert box_alert" id="box_alert_fail">
+    <span class="closebtn">&times;</span>
+    <strong>Danger!</strong> Đăng ký thất bại do : {{ err_msg }}
+</div>
+{% endif %}
+{% if success %}
+<div class="alert success box_alert" id="box_alert_success">
+    <span class="closebtn">&times;</span>
+    <strong>Success!</strong> Đăng ký thành công
+</div>
+{% endif %}
+
+<div class="container-fluid box_content">
+    <div class="row content">
+
+        <!-- menu chức năng công tác -->
+        <div class="col-sm-2 sidenav side_nav_news">
+            <h4 class="title_side_nav">Menu</h4>
+
+            <ul class="nav nav-pills nav-stacked side_nav_news_list">
+                <li class="active"><a href="/receive_students">Tiếp nhận học sinh</a></li>
+                <li><a href="#header_culture_news">Lập danh sách lớp</a></li>
+                <li><a href="#header_culture_news">Quản lý lớp học</a></li>
+            </ul>
+        </div>
+
+
+        <div class="col-sm-10 sidenav side_nav_news">
+
+            <h1 style="text-align: center; margin-top: 2%; margin-bottom: 2%;"><i
+                    class="fa-regular fa-address-card"></i> tiếp nhận học sinh</h1>
+            <div class="box_contain_register_form">
+
+
+                <form class="row register_form" method="post" enctype="multipart/form-data" action="/receive_students">
+                    <div class="col-md-6 register_box">
+                        <label class="form-label"> <i class="fa-solid fa-signature"></i> Họ và tên</label>
+                        <input required type="text" name="name_student" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 register_box">
+                        <label class="form-label"> <i class="fa-regular fa-address-card"></i> CMND</label>
+                        <input required type="text" name="identity_student" class="form-control">
+                    </div>
+
+                    <div class="col-md-12 register_box">
+                        <label class="form-label"> <i class="fa-solid fa-house-crack"></i> Quê quán</label>
+                        <input required type="text" name="hometown_student" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 register_box">
+                        <label class="form-label"><i class="fa-regular fa-envelope"></i> Email</label>
+                        <input required type="email" name="email_student" class="form-control">
+                    </div>
+
+                    <div class="col-md-6 register_box">
+                        <label class="form-label"><i class="fa-regular fa-envelope"></i> Số điện thoại</label>
+                        <input required type="number" name="phone_student" class="form-control">
+                    </div>
+
+                    <div class="col-md-3 register_box">
+                        <label for="birthday"><i class="fa-solid fa-cake-candles"></i> Birthday:</label>
+                        <input required style="width: 100%;" type="date" id="birthday" name="birthday_student">
+                    </div>
+
+                    <div class="col-md-3 register_box">
+                        <label class="form-label"><i class="fa-solid fa-children"></i> Gender</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" name="gender_student" value="0" checked>
+                            <label class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" class="form-check-input" value="1" name="gender_student">
+                            <label class="form-check-label">Female</label>
+                        </div>
+                    </div>
+
+
+                    <!-- box role -->
+                    <div class="col-md-5 register_box_role">
+                        <label class="form-label">Học sinh thuột khối</label>
+                        <ul class="list_check_box">
+                            <li>
+                                <input class="form-check-input" type="radio" id="check1" name="option_class"
+                                       value="10"
+                                       checked>
+                                <span>Lớp 10</span>
+                            </li>
+
+                            <li>
+                                <input class="form-check-input" type="radio" id="check2" name="option_class"
+                                       value="11">
+                                <span>Lớp 11</span>
+                            </li>
+
+                            <li>
+                                <input class="form-check-input" type="radio" id="check3" name="option_class"
+                                       value="12">
+                                <span>Lớp 12</span>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-3 bt_submit">
+                        <br>
+                        <button  class="btn btn-primary form-control">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
