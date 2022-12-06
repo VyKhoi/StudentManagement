@@ -142,3 +142,8 @@ a {
 .nav_menu_funtion a {
   background-color: red;
 }
+
+
+div.row{
+    height: auto !important;
+}
