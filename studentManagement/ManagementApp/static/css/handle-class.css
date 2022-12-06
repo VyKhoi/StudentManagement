@@ -1,16 +1,17 @@
 .sticky {
     position: fixed;
-    top: 121.08px;
-    width: 12.6%;
-    z-index: -1;
+    top: 121px;
+    width: 13%;
 }
 .content_teaching{
+    padding: 10px;
+    z-index: -1;
     background-color: black;
     padding-bottom: 15px;
     height: 540px;
 }
 .content_teaching_1{
-    background-color: #fff0f0;
+    background-color: #e7e7e770;
     padding-bottom: 10px;
     margin-left: auto;
 }
@@ -37,7 +38,6 @@ li.update_text{
     font-weight: 700;
 }
 .list-group-item{
-    border: 3px solid rgb(101 62 62);
     margin: 5px 0;
 }
 .group-class{
@@ -91,4 +91,7 @@ li.update_text{
     background-color: #bd9090;
     color: white;
     border-color: rgb(221 221 221);
+}
+.row.content{
+    height: auto;
 }

@@ -2,7 +2,7 @@ from sqlalchemy.orm import relationship, backref
 from enum import Enum as UserEnum
 from sqlalchemy import Column, Integer, String, Float, Text, Boolean, ForeignKey, Enum
 from sqlalchemy.orm import relationship
-
+from flask_login import UserMixin
 
 from StudentManagement.studentManagement.ManagementApp import app, db
 
@@ -19,7 +19,7 @@ class BaseModel(db.Model):
     email = Column(String(50), nullable= True)
 
 
-class User(BaseModel):
+class User(BaseModel,UserMixin):
 
 
     username = Column(String(50), nullable=False)
@@ -31,9 +31,12 @@ class User(BaseModel):
     news = relationship('News', backref='User', lazy=True)
     teaching_class = relationship('Teaching_Class', backref='User', lazy=True)
     in_charge_class = relationship('Class', backref='User', lazy=True)
+    role = relationship('Role', secondary='user_role', lazy='subquery',
+                        backref=backref('users', lazy=True))
 
     def __str__(self):
-        return self.name + " | mã số :" + self.id
+
+        return self.name
 
 
 class State(db.Model):
@@ -219,6 +222,23 @@ class Rule(db.Model):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        # user2 = User(name="khoi",
+        #              username="khoi",
+        #              password="khoi",
+        #
+        #
+        #              gender=bool(1),
+        #              identity="124325634",
+        #              hometown="long an",
+        #              birthday='1/1/1',
+        #              phone="134235",
+        #              email="4325",
+        #
+        #              image="co hinh anh",
+        #              active='1')
+        # print(user2)
+        # db.session.add(user2)
+        # db.session.commit()
         # c = News.query.get('n:00001')
         # print(c.User.name)
         # print(module_get_last_id.last_id_permission)
