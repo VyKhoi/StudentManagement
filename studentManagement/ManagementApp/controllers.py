@@ -163,7 +163,8 @@ def register_create_account():
 def index_academic_staff_show():
          return render_template('handle_student/receive_students.html')
 
-
+def stats_show():
+    return render_template('handle_student/stats.html')
 
 # xử lý thêm học sinh
 @login_required
@@ -221,6 +222,7 @@ def add_student():
 
 
     return render_template('handle_student/receive_students.html', err_msg=err_msg)
+
 
 
 

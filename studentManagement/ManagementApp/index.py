@@ -70,6 +70,9 @@ def page_not_found(e):
 
 app.add_url_rule('/receive_students','index_academic_staff_show',controllers.index_academic_staff_show)
 app.add_url_rule('/receive_students','index_academic_staff_post',controllers.add_student,methods = ['post'])
+
+app.add_url_rule('/stats','stats_show',controllers.stats_show)
+
 #
 # @app.route('/receive_students', methods = ['post'])
 
