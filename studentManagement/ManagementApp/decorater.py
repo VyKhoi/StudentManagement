@@ -35,7 +35,9 @@ def check_permission_register(f):
 
     # decorated_register.__name__ = str(f)
     return decorated_register
-
+def get_student_none(student):
+    id =''
+    return
 if __name__ == '__main__':
 
 

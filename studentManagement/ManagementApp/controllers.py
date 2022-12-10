@@ -18,7 +18,6 @@ def main():
     username = ""
     user= None
 
-
     # xử lý phân trang
     page_common_news = request.args.get("page_common", 1)
     page_culture_news  = request.args.get("page_culture", 1)

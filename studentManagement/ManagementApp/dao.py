@@ -1,7 +1,9 @@
+import requests
+
 from StudentManagement.studentManagement.ManagementApp.models import *
 from StudentManagement.studentManagement.ManagementApp import db,app
-
-
+from flask import session, jsonify,request
+import json
 import hashlib
 
 # ,hometown,birthday,phone,
@@ -105,9 +107,69 @@ def add_student(**kwargs):
     else:
         raise Exception("Chứng minh nhân dân bị trùng")
 
+def get_student_none(status):
+    student_none = Student.query.filter(Student.status.__eq__(status)).all()
+
+    list_id = []
+
+    for i in student_none:
+        list_id.append(i.id)
+    return list_id
+
+def get_id_student(status):
+    student = Student.query.filter(Student.id.__eq__(status)).all()
+    return student
+
+
+def convert_student_to_json(student):
+    return {
+        'id' : student.id,
+        'name' : student.name,
+        'email': student.email,
+        'birthday': student.birthday,
+        'hometown': student.hometown
+    }
+@app.route('/api/add-class', methods=['get','post'])
+def add_class():
+    # import pdb
+    # pdb.set_trace()
+    student_json = request.json  #nhận json yêu cầu lấy studetn với id
+    print("truoc khi convert", student_json, type(student_json))
+
+    student = Student.query.get( int( student_json['id'] ))
+    print("student lấy đc ",student,type(student))
+
+    stu = convert_student_to_json(student)
+
+    obj_student = json.dumps(stu) #chuyển sang json
+
+
+    # print("student sau khi chuyesausang json",str( obj_stu)
+
+    # print(type(obj_student))
+    #
+    return jsonify(obj_student)
+    # print("hoc sinh con cac o day", student_json)
+    # print(student_json['id'])
+    #
+    # student_id = json.loads(student_json['id'])
+    #
+    # print(type(student_id))
+    #
+    # student = Student.query.get(student_id)
+    #
+    # session['id_student_comment'] = student
+    #
+    # print("gia tri dang gui rong seesion ",session.get('id_student_comment'))
+    # return
 
 if __name__ == '__main__':
     with app.app_context():
+        # student_none = get_id_student(13)
+        # for i in student_none:
+        #     print(i.name)
+        print(get_id_student(13))
+        print(add_class())
         # print(check_identity_uer('10012asd9'))
         # print(check_username('user:1cac'))
         # print(check_login('user:1','1232'))
