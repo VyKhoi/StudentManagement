@@ -330,3 +330,9 @@ def render_template_score(id_year,id_class,id_subject):
 # xuất page xuất điểm
 def page_table_average():
     return render_template('teacher/table-average.html')
+
+
+# page xuất báo cáo giáo vụ
+def stats_show():
+    return render_template('handle_student/stats.html')
+
