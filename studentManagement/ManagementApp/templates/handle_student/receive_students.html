@@ -126,4 +126,32 @@
     </div>
 </div>
 
+
+
+<script>
+    var close = document.getElementsByClassName("closebtn");
+    var i;
+
+    for (i = 0; i < close.length; i++) {
+        close[i].onclick = function () {
+            var div = this.parentElement;
+            div.style.opacity = "0";
+            setTimeout(function () { div.style.display = "none"; }, 600);
+        }
+    }
+
+
+    setTimeout(() => {
+        var b = document.getElementById('box_alert_fail');
+        var b2 = document.getElementById('box_alert_success');
+        if (b != null) {
+            console.log(b)
+            b.style.display = 'none'
+        }
+        if(b2 != null)
+        {
+            b2.style.display = 'none'
+        }
+    }, 3000)
+</script>
 {% endblock %}

@@ -134,7 +134,8 @@
                  {% if user.active %}
                    {% for i in user.role %}
                             {% if i.role == 'teacher' %}
-                                <a href="/teacher"><i class="fa-solid fa-earth-americas"></i> Lớp phụ trách</a>
+                                <a href="/choose_school_year"><i class="fa-solid fa-earth-americas"></i> Lớp phụ trách</a>
+                                <a href="/teacher"><i class="fa-solid fa-earth-americas"></i> Lớp phụ trách(thẻ củ lưu lại để chú ý)</a>
                             {% endif %}
 
                             {% if i.role == 'academic_staff' %}

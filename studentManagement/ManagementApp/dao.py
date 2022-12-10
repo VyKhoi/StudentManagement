@@ -1,6 +1,6 @@
 from StudentManagement.studentManagement.ManagementApp.models import *
 from StudentManagement.studentManagement.ManagementApp import db,app
-
+import datetime
 
 import hashlib
 
@@ -85,6 +85,32 @@ def check_login(username,password):
 def get_user_id(id):
     return User.query.get(id)
 
+def get_rule_age_student(id_rule):
+    return Rule.query.get(id_rule)
+
+def check_age_student(birthday):
+    # láy year of bỉthday
+    year_b = int(birthday[-4:])
+    today = datetime.date.today()
+    # get curent year
+    current_year = today.year
+
+    age = current_year - year_b
+
+    # 1 max age, 2 min age
+    check = True
+    if age <= int(get_rule_age_student(1).value) and age >= int(get_rule_age_student(2).value):
+        return True
+    else:
+        return False
+
+
+
+
+
+
+
+
 
 def add_student(**kwargs):
 
@@ -106,30 +132,16 @@ def add_student(**kwargs):
         raise Exception("Chứng minh nhân dân bị trùng")
 
 
+def get_class_in_year_semester(id):
+    return Class.query.filter(Class.id_school_year.__eq__(id)).all()
+
+def get_teaching_class_user_semester(id, id_user):
+    return Teaching_Class.query.filter(Teaching_Class.id_school_year.__eq__(id),
+                                       Teaching_Class.id_teacher.__eq__(id_user)).all()
 if __name__ == '__main__':
     with app.app_context():
-        # print(check_identity_uer('10012asd9'))
-        # print(check_username('user:1cac'))
-        # print(check_login('user:1','1232'))
-        print(get_user(identity='100168'))
-        # print()
-        # u = get_user(1234)
-        # # u.role = 'teacher'
-        # list = ['teacher', 'school_manager', 'academic_staff']
-        # r = Role.query.filter()
-        #
-        # u.role.append(r)
-        #
-        #
-        # print(u.role)
-        # db.session.add(u)
-        # # db.session.commit()
-        # u = check_login('vykhoi','123')
-        # print(type(u))
-        # print(u.birthday)
-        # print(u.role[0].role)
-        #
-        # if 'c' == 'c':
-        #     print("oke")
-
-        # add_role_user('teacher','12345678')
+        # today = datetime.date.today()
+        # current_year = today.year
+        # print(type(current_year))
+        # print(get_rule_age_student(1).value )
+        print(check_age_student('18/12/2001'))

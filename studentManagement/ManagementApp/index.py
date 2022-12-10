@@ -1,16 +1,10 @@
-import math
-
-import flask_login
-from flask import Flask, url_for
-from flask import render_template, request, redirect
-from StudentManagement.studentManagement.ManagementApp.models import *
-from StudentManagement.studentManagement.ManagementApp import db,app,dao,login,controllers
-from StudentManagement.studentManagement.ManagementApp import get_data_news
+from flask import url_for
+from flask import session
+from StudentManagement.studentManagement.ManagementApp import dao,login,controllers
 from StudentManagement.studentManagement.ManagementApp.management_database import *
-from flask_admin import *
 from StudentManagement.studentManagement.ManagementApp.decorater import *
-import cloudinary.uploader
-from flask_login import login_user,logout_user,login_required
+from StudentManagement.studentManagement.ManagementApp.handle_score import handle_score
+from flask_login import logout_user,login_required
 
 # trang chủ, + login
 app.add_url_rule('/','main',controllers.main,methods = ['get', 'post'])
@@ -19,8 +13,15 @@ app.add_url_rule('/','main',controllers.main,methods = ['get', 'post'])
 app.add_url_rule('/register','',controllers.register_create_account,methods = ['get', 'post'])
 
 
-@app.route('/admin/')
-@login_required
+app.add_url_rule('/choose_school_year','choose_school_year',controllers.choose_school_year,methods = ['get', 'post'])
+app.add_url_rule('/lms/<id>','lms',controllers.lms,methods = ['get', 'post'])
+
+# @app.route('/admin')
+# @login_required
+# @check_admin
+# def hello_admin():
+#     return render_template('request_page/404.html')
+
 
 
 @login.user_loader
@@ -47,15 +48,15 @@ def page_not_found(e):
     return render_template('request_page/404.html')
 
 @app.errorhandler(401)
-def page_not_found(e):
+def page_not_access(e):
     # note that we set the 404 status explicitly
     return render_template('request_page/401.html')
 
 
+# giáo viên vô lms
+app.add_url_rule('/teacher','teacher',controllers.lms,methods = ['get', 'post'])
+#
 
-@app.route('/teacher')
-def test_page_handle_class():
-    return render_template('teacher/handle-class.html')
 
 @app.errorhandler(500)
 def page_not_found(e):
@@ -72,19 +73,19 @@ app.add_url_rule('/receive_students','index_academic_staff_show',controllers.ind
 app.add_url_rule('/receive_students','index_academic_staff_post',controllers.add_student,methods = ['post'])
 #
 # @app.route('/receive_students', methods = ['post'])
+app.add_url_rule('/table-average','page_table_average',controllers.page_table_average,methods = ['get','post'])
 
 
 
-
+#  chỗ nài để show học sinh trong cái lớp đó
+# @app.route('/score/<id_year>/<id_class>/<id_subject>')
+app.add_url_rule('/score/<id_year>/<id_class>/<id_subject>','render_template_score',controllers.render_template_score,methods = ['get', 'post'])
 
 
 
 if __name__ == '__main__':
     with app.app_context():
-        # ne = get_data_news.get_data_news()
-        # print(ne)
 
         u = flask_login.current_user
-
         print("hello", u)
         app.run(debug=True)
