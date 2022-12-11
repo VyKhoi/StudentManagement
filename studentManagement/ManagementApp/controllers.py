@@ -1,17 +1,15 @@
 import math
-
-import flask_login
-from flask import Flask, url_for
-from flask import render_template, request, redirect
-from StudentManagement.studentManagement.ManagementApp.models import *
-from StudentManagement.studentManagement.ManagementApp import db,app,dao,login
+from flask import session
+from StudentManagement.studentManagement.ManagementApp import dao
 from StudentManagement.studentManagement.ManagementApp import get_data_news
 from StudentManagement.studentManagement.ManagementApp.management_database import *
-from flask_admin import *
 from StudentManagement.studentManagement.ManagementApp.decorater import *
 import cloudinary.uploader
-from flask_login import login_user,logout_user,login_required
-
+from flask_login import login_user, login_required
+import json
+from StudentManagement.studentManagement.ManagementApp.handle_add_student.handle_students import *
+from StudentManagement.studentManagement.ManagementApp.handle_add_student import semester_active
+from StudentManagement.studentManagement.ManagementApp.handle_score import handle_score
 # trang chủ + login
 def main():
     password =""
@@ -193,8 +191,14 @@ def add_student():
     print(status)
 
 
+
     # print(password.strip().__eq__(confirm_password.strip()))
     try:
+
+            if check_age_student(birthday= birthday) == False:
+                raise Exception('Tuổi không hợp lệ')
+
+
             print("tao moi học sinh")
 
             # tạo student và add vào databbase
@@ -222,4 +226,112 @@ def add_student():
     return render_template('handle_student/receive_students.html', err_msg=err_msg)
 
 
+# render page chọn năm học
+def choose_school_year():
+    #  lay  3 id moi nhat
+    list_year = semester_active.get_active_schol_year()
+    print(list_year)
+    return render_template('teacher/choose_school_year.html',list_year = list_year)
+
+
+
+
+# cắt khối
+def get_list_class_type(type,list_class):
+    list_class_type = []
+    for i in list_class:
+       if i.Class.name_class.startswith(str(type)):
+           list_class_type.append(i)
+
+    return list_class_type
+
+# trang nài sau khi bấm chọn học kỳ
+def lms(id):
+    # lấy đc year
+    id_year = id
+    print("id năm hoc lay dc la",id_year)
+    # lấy tất cả lớp trong năm học nài
+    list_class_in_year_semester = dao.get_teaching_class_user_semester(str(id_year),current_user.id)
+    print(list_class_in_year_semester)
+    # cắt ra 3 khối để bên kia render
+    list_class_10 = get_list_class_type(10,list_class_in_year_semester)
+    print("danh sách khoi 10",list_class_10)
+
+    list_class_11 = get_list_class_type(11, list_class_in_year_semester)
+    print(list_class_11)
+
+    list_class_12 = get_list_class_type(12, list_class_in_year_semester)
+    print(list_class_12)
+    # bỏ nó vào web
+
+
+
+    return render_template('teacher/handle-class.html',
+                           list_class_10 = list_class_10,
+                           list_class_11 = list_class_11,
+                           list_class_12 = list_class_12,
+                           id_year = id_year
+                           )
+
+# trang nhập điểm học sinh
+def render_template_score(id_year,id_class,id_subject):
+
+    print("id year nài là ", id_year)
+
+    list_cell = handle_score.create_data_list_cell(id_year=id_year, id_class=id_class, id_subject=id_subject)
+    lengt_list_cell = len(list_cell)
+
+
+    list_student = handle_score.get_students_in_class(id_class= id_class, id_year= id_year)
+    vt = 0
+
+
+    # gửi cái danh sách vào session để sử dụng qua lại
+    session['list_cell'] = handle_score.convert_list_cell_to_json(list_cell)
+    # print(handle_score.handle_score())
+    print("danh sach lisst cell ",session['list_cell'])
+
+    class_name = Class.query.get(id_class)
+    semester = School_Year.query.get(id_year)
+    subject = Subjects.query.get(id_subject)
+
+    # mình phãi truyền cái rule về môn học đó để nó biết rằng
+    # môn học đó ràng buộc cột điểm
+    print("mon hoc nay la",subject.name_subject)
+    rule_subject = handle_score.rule_col_score_subject(subject.name_subject)
+    print("dict rule subject",rule_subject)
+
+
+    session['rule_subject'] = json.dumps(rule_subject)
+
+
+
+    # thử truyền đối tượng vào js
+
+
+    return render_template('template_handle_score/import_score.html',
+                           list_cell = list_cell,
+                           lengt_list_cell = lengt_list_cell,
+                           list_student = list_student,
+                           vt = vt,
+                           id_year = id_year,
+                           id_subject =id_subject,
+                            subject = subject,
+                           class_name = class_name,
+                           semester = semester,
+
+
+
+
+                           ) #cái rule_subject sẽ đc truyền qua bên kia để nhận, mỗi khi nhập điểm
+# nieus nhập sai thì cút
+
+# xuất page xuất điểm
+def page_table_average():
+    return render_template('teacher/table-average.html')
+
+
+# page xuất báo cáo giáo vụ
+def stats_show():
+    return render_template('handle_student/stats.html')
 

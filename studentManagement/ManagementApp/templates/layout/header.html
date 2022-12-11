@@ -76,33 +76,33 @@
 
                     <li class="nav-item ">
 
-                        <a class="nav-link active " aria-current="page" href="#"><i class="fas fa-users"></i> Tuyển
+                        <a class="nav-link" aria-current="page" href="#"><i class="fas fa-users"></i> Tuyển
                             dụng</a>
                     </li>
 
 
                     <li class="nav-item">
 
-                        <a class="nav-link active " aria-current="page" href="#"> <i
+                        <a class="nav-link" aria-current="page" href="#"> <i
                                 class="fa-solid fa-calendar-days"></i> Lịch Công Tác</a>
                     </li>
 
 
                     <li class="nav-item">
 
-                        <a class="nav-link active" href="#"><i class="fas fa-tv"></i> Cựu Học Sinh</a>
+                        <a class="nav-link" href="#"><i class="fas fa-tv"></i> Cựu Học Sinh</a>
                     </li>
 
 
                     <li class="nav-item">
 
-                        <a class="nav-link active" href="#"> <i class="far fa-envelope"></i> Liên Hệ</a>
+                        <a class="nav-link" href="#"> <i class="far fa-envelope"></i> Liên Hệ</a>
                     </li>
 
 
                     <li class="nav-item">
 
-                        <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-globe-europe"></i>
+                        <a class="nav-link" aria-current="page" href="#"><i class="fas fa-globe-europe"></i>
                             English</a>
                     </li>
 
@@ -134,11 +134,12 @@
                  {% if user.active %}
                    {% for i in user.role %}
                             {% if i.role == 'teacher' %}
-                                <a href="/teacher"><i class="fa-solid fa-earth-americas"></i> Lớp phụ trách</a>
+                                <a href="/choose_school_year"><i class="fa-solid fa-earth-americas"></i> Lớp phụ trách</a>
+                                <a href="/teacher"><i class="fa-solid fa-earth-americas"></i> Lớp phụ trách(thẻ củ lưu lại để chú ý)</a>
                             {% endif %}
 
                             {% if i.role == 'academic_staff' %}
-                                <a href="/register"><i class="fa-solid fa-earth-americas"></i> Đăng ký ngừi dùng</a>
+                                <a href="/register"><i class="fa-solid fa-earth-americas"></i> Đăng ký người dùng</a>
                                  <a href="/receive_students"><i class="fa-solid fa-earth-americas"></i> Công tác giáo vụ</a>
                             {% endif %}
                   {% endfor %}

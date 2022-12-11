@@ -127,6 +127,7 @@ thead > tr{
 .table-average{
     font-size: 40px;
     font-weight: bolder;
+    text-align: center
 }
 .year-of-school{
     display: flex;

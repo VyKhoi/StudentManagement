@@ -1,0 +1,93 @@
+::selection {
+    color: rgb(255, 255, 255);
+    background: rgb(0, 0, 0);
+  }
+
+.cell_score{
+    background-color: rgb(255, 255, 255);
+    width: 33.333%;
+    display: inline-block;
+    margin: 0 !important;
+    font-size: 1.15vw;
+}
+.cell_score > input{
+    width: 100%;
+    border-color:white;
+    
+}
+.col_student_name{
+    margin: 0;
+    /* padding-top: 2px; */
+    font-size: 1vw;
+    background-color: rgb(233, 233, 233);
+    
+}
+.col_student_score{
+        display: flex;
+        flex-wrap: wrap;
+        background-color: greenyellow;
+        padding: 0;
+        margin: 0;
+       
+        border-right-style: solid;
+}
+.cell_name {
+    border-bottom-style: solid;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    font-size: 1vw;
+    background-color: #ffbfba;
+}
+.heaed_type_score {
+    color: white;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #9c9c9c;
+}
+.heaed_type_score > h1{
+    padding: 5px;
+    display: inline-block;
+    width: 24.7%;
+    font-size: 1.2vw;
+    text-align: center;
+    border-style: solid;
+    margin: 0;
+}
+.content_teaching_1{
+    margin: 0;
+    padding: 0;
+  
+}
+
+.table_score_students{
+    background-color: black;
+    width: 100%;
+    position: relative;
+    margin-left: 2px;
+}
+
+input {
+    border-color: none;
+}
+
+.no-outline:focus {
+  outline: none;
+  border-style: solid;
+  border-bottom-color: rgb(1, 200, 163);
+}
+.name-class{
+    font-size: 45px;
+    text-align: center;
+}
+.subject-semester{
+    font-size: 20px;
+    display: flex;
+}
+.subject-semester>span {
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+    border: 3px black solid;
+    background-color: #eafffe;
+}

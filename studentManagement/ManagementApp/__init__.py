@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from urllib.parse import quote
 from flask_babelex import Babel
@@ -21,7 +21,6 @@ db = SQLAlchemy(app=app)
 
 app.config['PAGE_SIZE'] = 3
 
-admin = Admin(app=app, name='Trang quản trị', template_mode='bootstrap4')
 
 login = LoginManager(app= app)
 

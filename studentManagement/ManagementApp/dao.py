@@ -4,6 +4,7 @@ from StudentManagement.studentManagement.ManagementApp.models import *
 from StudentManagement.studentManagement.ManagementApp import db,app
 from flask import session, jsonify,request
 import json
+import datetime
 import hashlib
 
 # ,hometown,birthday,phone,
@@ -87,6 +88,32 @@ def check_login(username,password):
 def get_user_id(id):
     return User.query.get(id)
 
+def get_rule_age_student(id_rule):
+    return Rule.query.get(id_rule)
+
+def check_age_student(birthday):
+    # láy year of bỉthday
+    year_b = int(birthday[-4:])
+    today = datetime.date.today()
+    # get curent year
+    current_year = today.year
+
+    age = current_year - year_b
+
+    # 1 max age, 2 min age
+    check = True
+    if age <= int(get_rule_age_student(1).value) and age >= int(get_rule_age_student(2).value):
+        return True
+    else:
+        return False
+
+
+
+
+
+
+
+
 
 def add_student(**kwargs):
 
@@ -129,6 +156,7 @@ def convert_student_to_json(student):
         'birthday': student.birthday,
         'hometown': student.hometown
     }
+#thêm học sinh vô lớp
 @app.route('/api/add-class', methods=['get','post'])
 def add_class():
     # import pdb
@@ -149,49 +177,56 @@ def add_class():
     # print(type(obj_student))
     #
     return jsonify(obj_student)
-    # print("hoc sinh con cac o day", student_json)
-    # print(student_json['id'])
-    #
-    # student_id = json.loads(student_json['id'])
-    #
-    # print(type(student_id))
-    #
-    # student = Student.query.get(student_id)
-    #
-    # session['id_student_comment'] = student
-    #
-    # print("gia tri dang gui rong seesion ",session.get('id_student_comment'))
-    # return
+#xóa học sinh trong lớp
+# @app.route('/api/remove-class', methods=['get','post'])
+# def remove_student_in_class():
+#     # import pdb
+#     # pdb.set_trace()
+#     student_json = request.json  #nhận json yêu cầu lấy studetn với id
+#
+#     student = Student.query.get( int( student_json['id'] ))
+#     print(type(student))
+#
+#     Student_Class_SchoolYear.query.filter(Student_Class_SchoolYear.id_student.__eq__(student),
+#                                           Student_Class_SchoolYear.id_school_year
+#
+#                                           )
 
+def get_id_school_year(start_year, end_year, name_semester):
+    print("nsme dc truyen vo la", name_semester)
+    id_school_year = School_Year.query.filter(School_Year.semester.__eq__(name_semester),
+                                    School_Year.year_start.__eq__(start_year),
+                                    School_Year.year_end.__eq__(end_year)).all()
+    return id_school_year[0]
+
+#lấy id lớp trong 1 học kì
+def get_id_class_in_semeter(name_class, id_school_year):
+    id_class = Class.query.filter(Class.name_class.__eq__(name_class),
+                                        Class.id_school_year.__eq__(id_school_year)).all()
+    return id_class[0]
+
+#lấy id trong bảng student_class_school
+def get_id_student_class_school_year(id_class, id_school_year):
+    id_student_class_school_year = Student_Class_SchoolYear.query.filter(Student_Class_SchoolYear.id_class.__eq__(id_class),\
+                                                                         Student_Class_SchoolYear.id_school_year.__eq__(id_school_year)).all()
+    return id_student_class_school_year
+def get_class_in_year_semester(id):
+    return Class.query.filter(Class.id_school_year.__eq__(id)).all()
+
+def get_teaching_class_user_semester(id, id_user):
+    return Teaching_Class.query.filter(Teaching_Class.id_school_year.__eq__(id),
+                                       Teaching_Class.id_teacher.__eq__(id_user)).all()
 if __name__ == '__main__':
     with app.app_context():
-        # student_none = get_id_student(13)
-        # for i in student_none:
-        #     print(i.name)
-        print(get_id_student(13))
-        print(add_class())
-        # print(check_identity_uer('10012asd9'))
-        # print(check_username('user:1cac'))
-        # print(check_login('user:1','1232'))
-        print(get_user(identity='100168'))
-        # print()
-        # u = get_user(1234)
-        # # u.role = 'teacher'
-        # list = ['teacher', 'school_manager', 'academic_staff']
-        # r = Role.query.filter()
+        # # student_none = get_id_student(13)
+        # # for i in student_none:
+        # #     print(i.name)
+        # print(get_id_student(13))
+        # print(add_class())
+        # print
+        # print(get_user(identity='100168'))
         #
-        # u.role.append(r)
-        #
-        #
-        # print(u.role)
-        # db.session.add(u)
-        # # db.session.commit()
-        # u = check_login('vykhoi','123')
-        # print(type(u))
-        # print(u.birthday)
-        # print(u.role[0].role)
-        #
-        # if 'c' == 'c':
-        #     print("oke")
-
-        # add_role_user('teacher','12345678')
+        # print(check_age_student('18/12/2001'))
+        print(get_id_school_year('2020','2021', 'HK1').id)
+        print(get_id_class_in_semeter('10a1',1))
+        print(get_id_student_class_school_year(1,1))
