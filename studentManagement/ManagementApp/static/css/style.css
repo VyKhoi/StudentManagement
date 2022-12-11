@@ -83,7 +83,6 @@ a {
 .navbar {
   padding-left: 10px;
   padding-right: 10px;
-
   
 }
 
@@ -95,26 +94,28 @@ a {
 /* navbar chức năng người dung */
 
 .topnav {
-  overflow: hidden;
-  background-color: rgb(205, 205, 205);
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
-
-  margin: 0;
-  margin-top: -7px;
-  padding-left: 100px;
-  margin-left: 10px;
+    overflow: hidden;
+    background-color: rgb(58 59 53);
+    /* border-bottom-left-radius: 30px; */
+    /* border-bottom-right-radius: 30px; */
+    /* margin: 0; */
+    /* margin-top: -7px; */
+    padding-left: 65px;
+    margin-left: 10px;
 }
 
 .topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 8px 10px;
-  text-decoration: none;
-  font-size: 1vw;
-  border-right-style: solid;
-  border-bottom-right-radius: 10px;
+    background-color: #ffffec;
+    font-weight: bold;
+    margin: 2px 0px;
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    border-right-style: solid;
+    /* border-bottom-right-radius: 10px; */
 }
 
 .topnav a:hover {

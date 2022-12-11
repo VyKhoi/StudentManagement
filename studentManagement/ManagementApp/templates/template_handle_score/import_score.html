@@ -16,15 +16,19 @@
 
             <ul class="nav nav-pills nav-stacked">
                 <li class="active update_text">
+<!--<<<<<<< HEAD-->
                     <a href="{{ url_for('page_table_average',id_class =  class_name.id , id_subject =   subject.id ,
 
                      id_school_year =  semester.id ) }}">Xuất bản điểm</a>
+<!--=======-->
+<!--                    <a href="/table-average">XUẤT BẢNG ĐIỂM</a>-->
+<!--&gt;>>>>>> 0f07cb44d6818ff46de41565ef8d3844acdc610f-->
                 </li>
                 <li class="update_text">
-                    <a href="#header_culture_news">Đánh giá</a>
+                    <a href="/juge-comment">NHẬN XÉT</a>
                 </li>
                 <li class="update_text">
-                    <a href="#header_culture_news">Báo cáo và đánh giá</a>
+                    <a href="#header_culture_news">BÁO CÁO VÀ ĐÁNH GIÁ</a>
                 </li>
             </ul>
         </div>
@@ -32,16 +36,18 @@
 
         <div class="col-sm-10 content_teaching_1">
             <div>
-                <h1> lớp {{ class_name.name_class }}</h1>
-                <span >Bảng điểm môn {{ subject.name_subject }} </span>
-                <span >{{ semester.semester }} {{ semester.name }}</span>
+                <h1 class="name-class"> lớp {{ class_name.name_class }}</h1>
+                <div class="subject-semester">
+                    <span >Bảng điểm môn {{ subject.name_subject }} </span>
+                    <span >{{ semester.semester }} {{ semester.name }}</span>
+                </div>
 
                 <div class="heaed_type_score">
                     <h1>Mã số : Họ và tên</h1>
                     <h1>Điểm 15 phút</h1>
                     <h1>Điểm 45 phút</h1>
                     <h1>Điểm thi cuối kỳ</h1>
-              </div>
+                </div>
                 <div class="row table_score_students">
                     <div class="col-md-3 col_student_name">
                         {% for i in list_student%}
@@ -60,7 +66,7 @@
 
                         {% for i in list_cell %}
                         <div class="cell_score">
-                            <input class="no-outline" type="text" id="{{ i.id }}" onblur="change_cell(this,{{ id_year }},{{ id_subject }} )"
+                            <input class="no-outline cell" type="text" id="{{ i.id }}" onblur="change_cell(this,{{ id_year }},{{ id_subject }} )"
                                onclick="hightline_student(this)"    value="{{ i.convert_list() }}" />
                         </div>
                         {% endfor %}
@@ -74,7 +80,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- <script>
         window.onscroll = function() {myFunction()};
@@ -96,13 +101,14 @@
 
 
 
-
-</script>
+<
+</script> -->
  -->
 
-<!--------------->
+<button onclick="auto()"></button>
 <input type="hidden" id="hdnSession" data-value="@Request.RequestContext.HttpContext.Session['rule_subject']" />
 
 <script src="{{ url_for('static', filename='js/handle_score.js') }}"></script>
+
 
 {% endblock%}

@@ -40,7 +40,6 @@ def check_permission_register(f):
     # decorated_register.__name__ = str(f)
     return decorated_register
 
-
 def check_admin(f):
     print("nó có vào đây")
 
@@ -61,9 +60,6 @@ def check_admin(f):
         return redirect('page_not_found')
     else:
         return None
-
-
-
 
 if __name__ == '__main__':
 

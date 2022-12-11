@@ -1,6 +1,8 @@
 {% extends 'layout/base.html' %}
 {% block css_import %}
-<link href="{{ url_for('static', filename='css/handle-class.css') }}" rel="stylesheet"/>
+
+    <link href="{{ url_for('static', filename='css/handle-class.css') }}" rel="stylesheet"/>
+
 {% endblock %}
 {% block content%}
 <div class=" box_content">
@@ -8,15 +10,16 @@
         <div class="col-sm-2 sidenav content_teaching" id="myHeader">
             <h4 class="title_side_nav">Chức năng</h4>
 
+
             <ul class="nav nav-pills nav-stacked">
                 <li class="active update_text">
-                    <a href="#header_common_news">Xuất bản điểm</a>
+                    <a href="#!">THỜI BIỂU GIẢNG DẠY</a>
                 </li>
                 <li class="update_text">
-                    <a href="#header_culture_news">Đánh giá</a>
+                    <a href="#!">LỊCH CÔNG TÁC</a>
                 </li>
                 <li class="update_text">
-                    <a href="#header_culture_news">Báo cáo và đánh giá</a>
+                    <a href="#!">LỊCH ĐI CHƠI</a>
                 </li>
             </ul>
         </div>
@@ -105,9 +108,27 @@
     </div>
 </div>
 
-<!--    <script>-->
-<!--        window.onscroll = function() {myFunction()};-->
+    <script>
+        window.onscroll = function() {myFunction()};
 
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop - 121.08;
+        function myFunction() {
+          if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+          }else{
+            header.classList.remove("sticky")
+          }
+        }
+        function hightLightClass(){
+            var id = document.getElementById("Class-of-teacher");
+            id.style.border="5px #ff8f00 solid";
+
+            setTimeout(function(){
+                id.style.border="none";
+            }, 2000)
+        }
+    </script>
 <!--        var header = document.getElementById("myHeader");-->
 <!--        var sticky = header.offsetTop - 121.08;-->
 

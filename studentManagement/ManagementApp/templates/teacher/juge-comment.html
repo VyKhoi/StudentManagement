@@ -1,0 +1,133 @@
+{% extends 'layout/base.html'%}
+{% block css_import %}
+
+<link href="{{ url_for('static', filename='css/juge-comment.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block content%}
+<div class="container">
+    <div class="container-fluid box_content">
+        <div class="row content">
+            <div class="col-sm-2 sidenav content_teaching" id="myHeader">
+                <h4 class="title_side_nav">Chức năng</h4>
+
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active update_text">
+                        <a href="/table-average">XUẤT BẢN ĐIỂM</a>
+                    </li>
+                    <li class="update_text">
+                        <a href="#header_culture_news">Báo cáo và đánh giá</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-10 content_teaching_1">
+                <div class="container mt-3">
+                    <div class="table-average">NHẬN XÉT</div>
+                    <table class="table table-hover">
+                        <thead>
+                        <div class="year-of-school">
+                            <div>Năm học:</div>
+                        </div>
+                        <tr>
+                            <th scope="col">Lớp:</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Mã số</th>
+                            <th scope="col">Họ và tên</th>
+                            <th scope="col">Hạnh kiểm</th>
+                            <th scope="col">Nhận xét</th>
+                        </tr>
+                        </thead>
+                        <tbody class="table-class-border">
+                        <tr>
+                            <th scope="row" class="student-id">1</th>
+                            <td colspan="1" class="student_name">Võ Hữu Nghĩa</td>
+                            <td class="score-oral"> Trung Bình</td>
+                            <td class="score-15-minute">Quá ngu</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="student-id">2</th>
+                            <td colspan="1" class="student_name">Đặng Vỹ Khôi</td>
+                            <td class="score-oral"> Trung Bình</td>
+                            <td class="score-15-minute">Quá ngu</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="student-id">3</th>
+                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
+                            <td class="score-oral"> Trung Bình</td>
+                            <td class="score-15-minute">Quá ngu</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="student-id">3</th>
+                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
+                            <td class="score-oral"> Trung Bình</td>
+                            <td class="score-15-minute">Quá ngu</td>
+                        </tr>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    <nav aria-label="...">
+                        <ul class="pagination pagination-lg">
+                            <li class="page-item">
+                                <a class="page-link" href="#">1</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <form class="row form-comment">
+                    <div class="col-md-6">
+                        <label class="form-label"><i class="fa-solid fa-file-signature"></i>Mã số</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+
+                        <div class="col-md-6">
+                            <label class="form-label"><i class="fa-solid fa-signature"></i>Họ và tên</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label"><i class="fa-solid fa-envelope"></i>Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label"><i class="fa-solid fa-chart-simple"></i>Hạnh kiểm</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div>
+                        <label class="form-label"><i class="fa-solid fa-pen-fancy"></i>Nhận xét</label>
+                        <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+                    </div>
+
+                    <div class="col-md-12">
+                        <br>
+                        <button class="btn btn-primary form-control">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+<script>
+        window.onscroll = function() {myFunction()};
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop - 121.08;
+
+        function myFunction() {
+          if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky");
+          } else {
+            header.classList.remove("sticky");
+          }
+        }
+
+</script>
+{% endblock%}

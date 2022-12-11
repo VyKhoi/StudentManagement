@@ -31,24 +31,24 @@
        
         border-right-style: solid;
 }
-.cell_name{
+.cell_name {
     border-bottom-style: solid;
     padding-top: 5px;
     padding-bottom: 4px;
     font-size: 1vw;
-    background-color: rgb(255, 255, 255);
-
+    background-color: #ffbfba;
 }
-.heaed_type_score{
-  
+.heaed_type_score {
+    color: white;
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: yellow;
+    background-color: #9c9c9c;
 }
 .heaed_type_score > h1{
+    padding: 5px;
     display: inline-block;
-    width: 20%;
+    width: 24.7%;
     font-size: 1.2vw;
     text-align: center;
     border-style: solid;
@@ -75,4 +75,19 @@ input {
   outline: none;
   border-style: solid;
   border-bottom-color: rgb(1, 200, 163);
+}
+.name-class{
+    font-size: 45px;
+    text-align: center;
+}
+.subject-semester{
+    font-size: 20px;
+    display: flex;
+}
+.subject-semester>span {
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+    border: 3px black solid;
+    background-color: #eafffe;
 }
