@@ -1,230 +1,55 @@
 {% extends 'layout/base.html' %}
 {% block css_import %}
-    <link href="{{ url_for('static', filename='css/table-average.css') }}" rel="stylesheet"/>
+<link href="{{ url_for('static', filename='css/table-average.css') }}" rel="stylesheet"/>
 {% endblock %}
 {%block content%}
-    <div class="container">
-        <div class="container-fluid box_content">
-            <div class="row content">
-                <div class="col-sm-10 content_teaching_1" id="get_download">
-                    <div class="container mt-3">
-                      <div class="table-average">BẢNG ĐIỂM TRUNG BÌNH HỌC KÌ</div>
-                      <table class="table table-hover">
+<div class="container">
+    <div class="container-fluid box_content">
+        <div class="row content">
+            <div class="col-sm-10 content_teaching_1" id="get_download">
+                <div class="container mt-3">
+                    <div class="table-average">BẢNG ĐIỂM TRUNG BÌNH HỌC KÌ</div>
+                    <table class="table table-hover">
                         <thead>
-                          <tr>
-                            <th scope="col">Năm học: </th>
-                          </tr>
-                          <tr>
-                            <th scope="col">Lớp: </th>
-                          </tr>
-                          <tr>
+                        <tr>
+                            <th scope="col">Năm học: {{ current_school_year.name }}</th>
+                            <td scope="col" colspan="3" style="font-weight: bolder">Môn học: {{ current_subject.name_subject }}</td>
+                        </tr>
+                        <tr>
+                             <td scope="col" colspan="5" style="font-weight: bolder">Lớp: {{ current_class.name_class }}</td>
+                        </tr>
+                        <tr>
                             <th scope="col">Mã số</th>
                             <th scope="col">Họ và tên</th>
                             <th scope="col">Điểm TB HK1</th>
-                            <th scope="col">Điểm TB HK2</th>
-                          </tr>
+
+                        </tr>
                         </thead>
                         <tbody class="table-class-border">
-                          <tr>
-                            <th scope="row" class="student-id">1</th>
-                            <td colspan="1" class="student_name">Võ Hữu Nghĩa</td>
-                            <td class="score-15-minute">1</td>
-                            <td class="score-60-minute">1</td>
-
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">2</th>
-                            <td colspan="1" class="student_name">Đặng Vỹ Khôi</td>
-                            <td class="score-15-minute">1</td>
-                            <td class="score-60-minute">1</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">1</td>
-                            <td class="score-60-minute">1</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">1</td>
-                            <td class="score-60-minute">1</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">1</td>
-                            <td class="score-60-minute">1</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">1</td>
-                            <td class="score-60-minute">1</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">1</td>
-                            <td class="score-60-minute">1</td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row" class="student-id">3</th>
-                            <td colspan="1" class="student_name">Nguyễn Quốc Kỳ</td>
-                            <td class="score-15-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                            <td class="score-60-minute">
-                              <span class="score-oral-item">7</span>
-                              <span class="score-oral-item">9</span>
-                              <span class="score-oral-item">8</span>
-                            </td>
-                          </tr>
+                        {% for i in list_student_avg %}
+                        <tr>
+                            <th scope="row" class="student-id">{{ i['id'] }}</th>
+                            <td colspan="1" class="student_name">{{ i['name'] }}</td>
+                            <td class="score-15-minute">{{ i['avg'] }}</td>
+                        </tr>
+                        {% endfor %}
                         </tbody>
-                      </table>
-                      <nav aria-label="...">
-                          <ul class="pagination pagination-lg">
+                    </table>
+                    <nav aria-label="...">
+                        <ul class="pagination pagination-lg">
                             <li class="page-item">
-                              <a class="page-link" href="#">1</a>
+                                <a class="page-link" href="#">1</a>
                             </li>
-                          </ul>
-                        </nav>
-                    </div>
-                  </div>
-                  <button class="btn-down" id="download-pdf">DOWNLOAD PDF</button>
+                        </ul>
+                    </nav>
                 </div>
             </div>
+            <button class="btn-down" id="download-pdf">DOWNLOAD PDF</button>
         </div>
     </div>
-    <script>
+</div>
+</div>
+<script>
         // window.onscroll = function() {myFunction()};
 
         // var header = document.getElementById("myHeader");
@@ -246,5 +71,6 @@
             html2pdf(get_download);
           })
         }
-    </script>
+
+</script>
 {%endblock%}

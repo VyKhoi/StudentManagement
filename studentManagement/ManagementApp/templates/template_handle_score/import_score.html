@@ -16,7 +16,9 @@
 
             <ul class="nav nav-pills nav-stacked">
                 <li class="active update_text">
-                    <a href="#header_common_news">Xuất bản điểm</a>
+                    <a href="{{ url_for('page_table_average',id_class =  class_name.id , id_subject =   subject.id ,
+
+                     id_school_year =  semester.id ) }}">Xuất bản điểm</a>
                 </li>
                 <li class="update_text">
                     <a href="#header_culture_news">Đánh giá</a>

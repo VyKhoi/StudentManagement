@@ -76,7 +76,7 @@ app.add_url_rule('/stats','stats_show',controllers.stats_show)
 
 #
 # @app.route('/receive_students', methods = ['post'])
-app.add_url_rule('/table-average','page_table_average',controllers.page_table_average,methods = ['get','post'])
+app.add_url_rule('/table-average/<id_class>/<id_subject>/<id_school_year>','page_table_average',controllers.page_table_average,methods = ['get','post'])
 
 
 

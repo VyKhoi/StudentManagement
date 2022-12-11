@@ -70,11 +70,19 @@ function change_cell(cell, id_year, id_subject) {
                 let value = cell.value
         
                 if (value == "") {
+
+//                cũ
                     return
                     cell.value = value
+//
+
+//                    mới
+//                        cell.value = ""
                 }
         
-                console.log(id, value)
+                console.log("xuat id va gia tri cua cell",id, value)
+
+
                 value[value.leng - 1]
         
         

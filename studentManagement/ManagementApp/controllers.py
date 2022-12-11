@@ -328,8 +328,32 @@ def render_template_score(id_year,id_class,id_subject):
 # nieus nhập sai thì cút
 
 # xuất page xuất điểm
-def page_table_average():
-    return render_template('teacher/table-average.html')
+def page_table_average(id_class,id_subject,id_school_year):
+    #  cần phãi lấy ra được id lớp, để lấy ra danh sách hs
+    # lấy id class, id year, id sub
+    print("có nhận :", id_class,id_subject,id_school_year)
+
+    current_class  = Class.query.get(id_class)
+    current_school_year = School_Year.query.get(id_school_year)
+    current_subject = Subjects.query.get(id_subject)
+
+    print("lớp là" , )
+
+    list = []
+    list_student = handle_score.get_students_in_class(id_class = id_class, id_year = id_school_year)
+    for i in list_student:
+        u = handle_score.get_infor_student_and_avg(student=i, id_subject = id_subject, id_school_year = id_school_year)
+        list.append(u)
+
+
+    return render_template('teacher/table-average.html',
+                           list_student_avg = list,
+
+                           current_class = current_class,
+                           current_subject = current_subject,
+                           current_school_year = current_school_year
+
+                           )
 
 
 # page xuất báo cáo giáo vụ

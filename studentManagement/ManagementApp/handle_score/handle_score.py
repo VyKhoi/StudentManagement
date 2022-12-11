@@ -4,6 +4,13 @@ from flask import render_template, request, redirect
 from StudentManagement.studentManagement.ManagementApp.models import *
 from flask import render_template, request, redirect, session, jsonify
 
+_15M_RATIO = 1
+_45M_RATIO = 2
+_FiNAL_TEST   = 3
+
+
+
+
 class cell_maxtrix_score():
     def __init__(self, id, list):
         self.id = id
@@ -21,6 +28,7 @@ class cell_maxtrix_score():
 def get_score_belong_type(type,id_student, list): #list data điểm tất cả học sinh để nó lấy lọc
     # print("no co chay vao ham nai")
     list_tmp = []  # list nài dùng để luu danh sách điểm theo loại
+    print('gia tri list cell theo type',list_tmp)
     for i in list:
         if i[5] == id_student and i[2] == type:
             list_tmp.append(float(i[1]))
@@ -40,27 +48,98 @@ def get_score_belong_type(type,id_student, list): #list data điểm tất cả 
     return cell
 
 
-# lay diem mon hoc cua mon 1 lop trong nam hoc
+# lay diem mon hoc cua mon subject lop trong nam hoc (def lấy điểm 1)
 def get_score_tudent_in_class(id_year_hk, id_class, subject):
+
+    print("gia tri duoc truyen de loc diem la",id_year_hk,id_class,subject)
+
+    # scores = db.session.query(Score.id,
+    #                           Score.values,
+    #                           Score.type_score,
+    #                           Score.id_subject,
+    #                           Score.id_school_year,
+    #                           Score.id_student
+    #                          ) \
+    #     .select_from(Student_Class_SchoolYear).join(
+    #     Score, Score.id_student == Student_Class_SchoolYear.id_student and
+    #            Score.id_school_year == Student_Class_SchoolYear.id_school_year
+    # ).filter(Student_Class_SchoolYear.id_school_year == id_year_hk,
+    #          Student_Class_SchoolYear.id_class == id_class,
+    #          Score.id_subject == subject
+    #          ).all()
+
     scores = db.session.query(Score.id,
                               Score.values,
                               Score.type_score,
                               Score.id_subject,
                               Score.id_school_year,
                               Score.id_student
-                             ) \
+                              ) \
         .select_from(Student_Class_SchoolYear).join(
         Score, Score.id_student == Student_Class_SchoolYear.id_student and
                Score.id_school_year == Student_Class_SchoolYear.id_school_year
-    ).filter(Student_Class_SchoolYear.id_school_year == id_year_hk,
+    ).filter(
+            Score.id_school_year.__eq__(id_year_hk),
              Student_Class_SchoolYear.id_class == id_class,
              Score.id_subject == subject
              ).all()
-
+    # Student_Class_SchoolYear.id_school_year == id_year_hk,
     print("điểm- hs_lo_hk", scores)
     print()
     return scores
 
+# lấy điểm của "1 học sinh " với " môn học, học kỳ"
+def get_score_student(id_student, id_subject, id_school_year):
+    return Score.query.filter(Score.id_student.__eq__(id_student),
+                              Score.id_subject.__eq__(id_subject),
+                              Score.id_school_year.__eq__(id_school_year)
+                              ).all()
+
+
+# tính điểm trung bình học sinh theo môn học, theo năm học
+def get_average_subject_student(id_student, id_subject, id_school_year):
+    list_score = get_score_student(id_student=id_student, id_subject= id_subject, id_school_year = id_school_year)
+    print(list_score)
+    # biến lưu điểm tổng
+    avg_stu = 0
+
+    for i in list_score:
+        print(i.values," thể loại điểm là  ", i.type_score)
+
+    for i in list_score:
+        if i.type_score.__eq__('15m'):
+            avg_stu = avg_stu + i.values * _15M_RATIO
+
+        if i.type_score.__eq__('45m'):
+            avg_stu = avg_stu + i.values *  _45M_RATIO
+
+        if i.type_score.__eq__('final_test'):
+            avg_stu = avg_stu + i.values * _FiNAL_TEST
+
+    print("điểm tổng học  sinh là ", avg_stu)
+
+    avg_stu = avg_stu / get_ratio_average_subject(id_subject)
+
+
+
+
+    return  round(avg_stu,2)
+
+# tạo cấu trúc dict lưu thông tin của học sinh và điểm trung bình ( để render lên page xuất điểm tb học kỳ)
+def get_infor_student_and_avg(student, id_subject, id_school_year):
+    avg = get_average_subject_student(id_student=student.id, id_subject=id_subject, id_school_year=id_school_year)
+    # print("điểm trung binh của học sinh ",student.name, " là " , avg)
+    return {
+        "id" : student.id,
+        "name" : student.name,
+        'gender' : student.gender,
+        'identity' : student.identity,
+        'hometown' : student.hometown,
+        'birthday' : student.birthday,
+        'phone': student.phone,
+        'email' : student.email,
+        'avg' : avg
+    }
 
 def get_id_students_in_class(id_class,id_year):
     list = Student_Class_SchoolYear.query.filter(
@@ -258,14 +337,56 @@ def rule_col_score_subject(name_subject):
             '_final_test' : _final_test
         }
 
+# ---------------------------------------------
+def get_ratio_average_subject(id_subject):
 
+    sub = Subjects.query.get(int(id_subject))
+
+    rule = rule_col_score_subject(name_subject = sub.name_subject)
+
+    ratio = 0
+    print("luat le ",rule)
+    for i in rule:
+        if i.endswith('15m'):
+            ratio = ratio + rule[i] * _15M_RATIO
+        if i.endswith('45m'):
+            ratio = ratio + rule[i] * _45M_RATIO
+        if i.endswith('final_test'):
+            ratio = ratio + rule[i] * _FiNAL_TEST
+
+    print("he so chia la" , ratio)
+    return ratio
 # đây là phần tính toán điểm trung bình ( mỗi lần thống kê điểm môn học của từng học sinh) XUất bản điểm cuối năm
 # ---------
+
+#
+
 
 if __name__ == '__main__':
     with app.app_context():
         print("hello")
-        # u = create_data_list_cell(1,1,1)
         #
-        # convert_list_cell_to_json(u)
-        print(rule_col_score_subject('toán 10'))
+        # print(get_ratio_average_subject(1))
+        # print("điểm trung binh môn sinh 10 của hs 1 là" ,
+        #       get_average_subject_student(id_student=1,id_subject=7,id_school_year=1))
+        #
+        #
+        # #lấy hoc sinh trong lớp id 1
+        #
+        # print(get_students_in_class(1,1))
+
+        # for i in scores:
+        #     print(i.values," thể loại điểm là  ", i.type_score)
+
+        # lấy tất cả học sinh trong id year 1, môn 1, lớp 1
+        print("test học sinh",get_average_subject_student(id_student=1,id_subject=4,id_school_year=1))
+
+
+        l = []
+        list_student = get_students_in_class(id_class=1,id_year=1)
+        for i in list_student:
+            u = get_infor_student_and_avg(student=i,id_subject=4,id_school_year=1)
+            l.append(u)
+            print(u['name']," diem trung ",u['avg'])
+
+        print(l)
