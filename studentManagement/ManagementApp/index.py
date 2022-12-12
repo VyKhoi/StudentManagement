@@ -126,19 +126,28 @@ app.add_url_rule('/table-average/<id_class>/<id_subject>/<id_school_year>','page
 # @app.route('/score/<id_year>/<id_class>/<id_subject>')
 app.add_url_rule('/score/<id_year>/<id_class>/<id_subject>','render_template_score',controllers.render_template_score,methods = ['get', 'post'])
 
-# @app.route('/search_student_in_class', methods=['post','get'])
-# def search_student_in_class():
-#         name_class = request.form.get('name_class').lower()
-#         name_school_year =  request.form.get('name_school_year')
-#         semmester = request.form.get('semester')
-#         start_end_year = name_school_year.split("-")
-#         start = start_end_year[0]
-#         end = start_end_year[1]
-#         id_school_year= dao.get_id_school_year(start,end,semmester).id
-#         id_class = dao.get_id_class_in_semeter(name_class, id_school_year).id
-#         list_id_student_class_school_year = dao.get_id_student_class_school_year(id_class,id_school_year)
-#
-#         return list_id_student_class_school_year
+
+
+#  chức năng xuát bảng điểm học kỳ chỉ có giao vien chủ nhiệm mới dược
+@app.route('/score-avg-semester-class/<id_school_year>/<id_class>')
+def score_avg_semester_class(id_school_year, id_class):
+    print(flask_login.current_user.id)
+    list_student = handle_score.get_students_in_class(id_class=id_class,id_year=id_school_year)
+    print(list_student)
+
+    semester = School_Year.query.get(id_school_year)
+    current_class = Class.query.get(id_class)
+
+    list_student_and_avg = []
+    for i in list_student:
+        list_student_and_avg.append(handle_score.get_info_semester_student(student=i,id_school_year=id_school_year))
+
+    return  render_template('teacher/table-average_semester.html',
+                            list_student_and_avg = list_student_and_avg,
+                            semester = semester,
+                            current_class = current_class
+                            )
+
 
 if __name__ == '__main__':
     with app.app_context():

@@ -19,16 +19,17 @@
 <!--<<<<<<< HEAD-->
                     <a href="{{ url_for('page_table_average',id_class =  class_name.id , id_subject =   subject.id ,
 
-                     id_school_year =  semester.id ) }}">Xuất bản điểm</a>
+                     id_school_year =  semester.id ) }}">XUẤT BẢN ĐIỂM MÔN HỌC</a>
 <!--=======-->
 <!--                    <a href="/table-average">XUẤT BẢNG ĐIỂM</a>-->
 <!--&gt;>>>>>> 0f07cb44d6818ff46de41565ef8d3844acdc610f-->
-                </li>
+               {% if user.id == class_name.id_teacher_in_charge %}
                 <li class="update_text">
                     <a href="/juge-comment">NHẬN XÉT</a>
                 </li>
+                {% endif %}
                 <li class="update_text">
-                    <a href="#header_culture_news">BÁO CÁO VÀ ĐÁNH GIÁ</a>
+                    <a href="{{ url_for('score_avg_semester_class', id_school_year = semester.id, id_class = class_name.id ) }}">Đánh Giá Học Lực Cuối Kỳ</a>
                 </li>
             </ul>
         </div>

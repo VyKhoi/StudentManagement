@@ -1,4 +1,6 @@
 import math
+
+import flask_login
 from flask import session
 from StudentManagement.studentManagement.ManagementApp import dao
 from StudentManagement.studentManagement.ManagementApp import get_data_news
@@ -306,7 +308,8 @@ def render_template_score(id_year,id_class,id_subject):
 
 
 
-    # thử truyền đối tượng vào js
+    # lấy đối tuong ngừi dung hiện tại
+    user =  flask_login.current_user
 
 
     return render_template('template_handle_score/import_score.html',
@@ -319,9 +322,7 @@ def render_template_score(id_year,id_class,id_subject):
                             subject = subject,
                            class_name = class_name,
                            semester = semester,
-
-
-
+                           user = user
 
                            ) #cái rule_subject sẽ đc truyền qua bên kia để nhận, mỗi khi nhập điểm
 # nieus nhập sai thì cút

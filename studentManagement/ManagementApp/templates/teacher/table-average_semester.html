@@ -8,33 +8,36 @@
         <div class="row content">
             <div class="col-sm-10 content_teaching_1" id="get_download">
                 <div class="container mt-3">
-                    <div class="table-average">BẢNG ĐIỂM TRUNG BÌNH HỌC KÌ</div>
+                    <div class="table-average">BẢNG ĐIỂM TỔNG KẾT HỌC KÌ {{ semester.semester }}</div>
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th scope="col">Năm học: {{ current_school_year.name }}</th>
-                            <td scope="col" colspan="3" style="font-weight: bolder">Môn học: {{ current_subject.name_subject }}</td>
-                        </tr>
-                        <tr>
-                             <td scope="col" colspan="5" style="font-weight: bolder">Lớp: {{ current_class.name_class }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Mã số</th>
-                            <th scope="col">Họ và tên</th>
-                            <th scope="col">Điểm TB {{ current_school_year.semester }}</th>
+                            <th colspan="2" scope="col">Năm học: {{ semester.name }}</th>
+                             <td scope="col" colspan="2" style="font-weight: bolder">Lớp: {{ current_class.name_class }}</td>
 
                         </tr>
+
+
+                            <tr>
+                                <th scope="col">Mã số</th>
+                                <th scope="col">Họ và tên</th>
+                                <th scope="col">Điểm TB </th>
+                                <th scope="col">Học Lực</th>
+                            </tr>
+
                         </thead>
                         <tbody class="table-class-border">
-                        {% for i in list_student_avg %}
-                        <tr>
-                            <th scope="row" class="student-id">{{ i['id'] }}</th>
-                            <td colspan="1" class="student_name">{{ i['name'] }}</td>
-                            <td class="score-15-minute">{{ i['avg'] }}</td>
-                        </tr>
-                        {% endfor %}
+                      {% for i in list_student_and_avg %}
+                            <tr>
+                                <th scope="row" class="student-id">{{ i['id'] }}</th>
+                                <td colspan="1" class="student_name">{{ i['name'] }}</td>
+                                <td class="avg_semester">{{ i['avg_semester'] }}</td>
+                                 <td class="achievement">{{ i['achievement'] }}</td>
+                            </tr>
+                      {% endfor %}
                         </tbody>
                     </table>
+
                     <nav aria-label="...">
                         <ul class="pagination pagination-lg">
                             <li class="page-item">
