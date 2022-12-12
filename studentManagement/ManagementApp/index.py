@@ -126,19 +126,6 @@ app.add_url_rule('/table-average','page_table_average',controllers.page_table_av
 # @app.route('/score/<id_year>/<id_class>/<id_subject>')
 app.add_url_rule('/score/<id_year>/<id_class>/<id_subject>','render_template_score',controllers.render_template_score,methods = ['get', 'post'])
 
-# @app.route('/search_student_in_class', methods=['post','get'])
-# def search_student_in_class():
-#         name_class = request.form.get('name_class').lower()
-#         name_school_year =  request.form.get('name_school_year')
-#         semmester = request.form.get('semester')
-#         start_end_year = name_school_year.split("-")
-#         start = start_end_year[0]
-#         end = start_end_year[1]
-#         id_school_year= dao.get_id_school_year(start,end,semmester).id
-#         id_class = dao.get_id_class_in_semeter(name_class, id_school_year).id
-#         list_id_student_class_school_year = dao.get_id_student_class_school_year(id_class,id_school_year)
-#
-#         return list_id_student_class_school_year
 
 if __name__ == '__main__':
     with app.app_context():

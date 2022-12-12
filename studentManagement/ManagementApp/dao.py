@@ -171,11 +171,6 @@ def add_class():
 
     obj_student = json.dumps(stu) #chuyển sang json
 
-
-    # print("student sau khi chuyesausang json",str( obj_stu)
-
-    # print(type(obj_student))
-    #
     return jsonify(obj_student)
 #xóa học sinh trong lớp
 # @app.route('/api/remove-class', methods=['get','post'])
