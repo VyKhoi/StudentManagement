@@ -118,7 +118,7 @@
 
             <form class="d-flex" action="/">
                 <input class="form-control me-2" name="keyword" type="text" placeholder="Search">
-                <button class="btn btn-dark" type="submit">Search</button>
+                <button class="btn btn-dark" type="submit"><i class="fas fa-search" style="font-size: 20px"></i></button>
             </form>
         </div>
     </nav>
@@ -126,7 +126,7 @@
     <div class="row">
         <div class="topnav">
             <a class="active" href="#home"><i class="fa-solid fa-house-user"></i> Home</a>
-            <a href="/"><i class="fa-solid fa-earth-americas"></i> News</a>
+            <a href="/"><i class="fas fa-newspaper"></i> News</a>
 
 
 
@@ -134,13 +134,13 @@
                  {% if user.active %}
                    {% for i in user.role %}
                             {% if i.role == 'teacher' %}
-                                <a href="/choose_school_year"><i class="fa-solid fa-earth-americas"></i> Lớp phụ trách</a>
-                                <a href="/teacher"><i class="fa-solid fa-earth-americas"></i> Lớp phụ trách(thẻ củ lưu lại để chú ý)</a>
+                                <a href="/choose_school_year"><i class="fas fa-chalkboard-teacher"></i> Lớp phụ trách</a>
+
                             {% endif %}
 
                             {% if i.role == 'academic_staff' %}
-                                <a href="/register"><i class="fa-solid fa-earth-americas"></i> Đăng ký người dùng</a>
-                                 <a href="/receive_students"><i class="fa-solid fa-earth-americas"></i> Công tác giáo vụ</a>
+                                <a href="/register"><i class="fas fa-user-plus"></i> Đăng ký người dùng</a>
+                                 <a href="/receive_students"><i class="fas fa-briefcase"></i> Công tác giáo vụ</a>
                             {% endif %}
                   {% endfor %}
                  {% endif %}
@@ -155,7 +155,7 @@
                             <img src="{{ current_user.image }}" width="20" height="20" class="rounded-circle" alt="{{ current_user.name }}" />
 
                         </a>
-                        <a class="nav-link bt_logout" href="/logout">Đăng xuất</a>
+                        <a class="nav-link bt_logout" href="/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
                 </div>
                  {% else %}
 

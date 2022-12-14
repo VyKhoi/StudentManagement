@@ -164,8 +164,22 @@ def add_class():
     student_json = request.json  #nhận json yêu cầu lấy studetn với id
     print("truoc khi convert", student_json, type(student_json))
 
-    student = Student.query.get( int( student_json['id'] ))
-    print("student lấy đc ",student,type(student))
+    student = Student.query.get( int(student_json['id']) )
+
+    stu = convert_student_to_json(student)
+
+    obj_student = json.dumps(stu) #chuyển sang json
+
+    return jsonify(obj_student)
+
+@app.route('/api/delete-class', methods=['get','post'])
+def delete_class():
+    # import pdb
+    # pdb.set_trace()
+    student_json = request.json  #nhận json yêu cầu lấy studetn với id
+    print("truoc khi convert", student_json, type(student_json))
+
+    student = Student.query.get( int(student_json['id']) )
 
     stu = convert_student_to_json(student)
 
@@ -196,8 +210,15 @@ def get_id_school_year(start_year, end_year, name_semester):
 
 #lấy id lớp trong 1 học kì
 def get_id_class_in_semeter(name_class, id_school_year):
+
+    print("name class o day laf ",name_class, id_school_year )
+
     id_class = Class.query.filter(Class.name_class.__eq__(name_class),
                                         Class.id_school_year.__eq__(id_school_year)).all()
+
+    print(id_class)
+
+
     return id_class[0]
 
 #lấy id trong bảng student_class_school
@@ -213,6 +234,7 @@ def get_teaching_class_user_semester(id, id_user):
                                        Teaching_Class.id_teacher.__eq__(id_user)).all()
 if __name__ == '__main__':
     with app.app_context():
+        print("hello")
         # # student_none = get_id_student(13)
         # # for i in student_none:
         # #     print(i.name)
@@ -222,6 +244,6 @@ if __name__ == '__main__':
         # print(get_user(identity='100168'))
         #
         # print(check_age_student('18/12/2001'))
-        print(get_id_school_year('2020','2021', 'HK1').id)
-        print(get_id_class_in_semeter('10a1',1))
-        print(get_id_student_class_school_year(1,1))
+        # print(get_id_school_year('2020','2021', 'HK1').id)
+        # print(get_id_class_in_semeter('10a1',1))
+        # print(get_id_student_class_school_year(1,1))

@@ -1,0 +1,204 @@
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 13%;
+}
+.content_teaching{
+    padding: 10px;
+    background-color: black;
+    padding-bottom: 15px;
+    height: 240px;
+}
+.content_teaching_1{
+    background-color: #e7e7e770;
+    padding-bottom: 10px;
+    margin-left: auto;
+}
+.title_side_nav{
+    background-color: white;
+    color: rgb(249 89 89);
+    padding: 0;
+    text-align: center;
+    padding: 5px 5px 10px 5px;
+    font-size: 30px;
+    border-bottom: 2px black solid;
+}
+
+li.update_text{
+    background-color: #4b4b4b;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.update_text > a{
+    text-decoration: none;
+    color: white !important;
+    font-size: 18px;
+    padding: 5px;
+    font-weight: 700;
+}
+.list-group-item{
+    margin: 5px 0;
+}
+.group-class{
+    border-bottom: 2px black solid;
+}
+.group-class-item{
+    font-size: 25px;
+}
+.border {
+    padding: 16px;
+    font-size: 40px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin: 20px 10px;
+    background-color: #fff0f0;
+    text-align: center;
+}
+.list-group-item+.list-group-item {
+    border-top-width: unset;
+}
+.all_card {
+    flex-wrap: wrap;
+    display: flex;
+}
+.card{
+    margin: 10px;
+    box-shadow: 5px 5px 10px black;
+    width: 30.3% !important;
+}
+.card-body {
+    background-color: #f7f7f7;
+}
+.card >img{
+    height: 188px;
+    width: 100%;
+}
+.card-title {
+    font-size: 25px;
+    font-style: oblique;
+}
+.btn-primary {
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff8a8a;
+    border-color: #ff7878;
+    font-size: 20px;
+    box-shadow: 5px 5px 10px #d77f7f;
+}
+.btn-primary:hover{
+    background-color: #bd9090;
+    color: white;
+    border-color: rgb(221 221 221);
+}
+.row.content{
+    height: auto;
+}
+
+
+.score-oral-item{
+    padding: 5px;
+    margin: 3px;
+    /* background-color: #d77f7f; */
+    text-align: center;
+}
+thead>th{
+    font-size: 20px;
+}
+.mt-3 {
+    text-align: center;
+}
+.table *:not(span){
+    border: 1px black solid;
+   
+}
+thead > tr{
+    font-size:20px;
+}
+.student-id{
+    font-weight: 500;
+}
+.student_name{
+    font-weight: 500;
+}
+.score-oral, .score-15-minute, .score-60-minute, .all-of-class{
+    font-weight: 500;
+}
+.table-average{
+    font-size: 40px;
+    font-weight: bolder;
+}
+.year-of-school{
+    display: flex;
+}
+.year-of-school >div{
+    width: 100%;
+    padding: 5px 15px;
+    text-align: start;
+    font-size: 25px;
+    font-weight: bold;
+    border-top: 1px black solid;
+    border-left: 1px black solid;
+    border-right: 1px black solid;
+}
+.form-label {
+    padding-top: 15px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+.form-label >i {
+    margin-right: 5px;
+}
+.form-comment {
+    border-radius: 2%;
+    background-color: #ffdfdf;
+    margin: 13px;
+}
+.pagination {
+    justify-content: center;
+
+}
+.btn-primary {
+    margin-bottom: 10px;
+}
+.mt-3 {
+    text-align: start;
+}
+.nav-item{
+    font-size:20px;
+}
+.nav-link.active{
+    color: #ffdfdf !important;
+    background-color: black !important;
+    font-weight: bolder;
+}
+.nav-link{
+    color: black !important;
+}
+.nav-tabs .nav-link {
+    border: 8px solid #a1101000;
+}
+.dropdown{
+    border: 0 !important; 
+    text-align: center;
+}
+.dropdown-menu {
+    padding: 0;
+    overflow-y: scroll;
+    max-height: 200px;
+}
+.dropdown-item {
+    border: 0 !important;
+}
+.btn-secondary {
+    font-weight: bold;
+    color: #000;
+    background-color: #ffffff;
+    border-color: #6c757d;
+    font-size: 20px;
+}
+.center-line{
+    line-height: 2.5;
+    font-size: 17px;
+    font-weight: 600;
+}

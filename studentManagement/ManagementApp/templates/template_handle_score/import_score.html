@@ -16,13 +16,20 @@
 
             <ul class="nav nav-pills nav-stacked">
                 <li class="active update_text">
-                    <a href="/table-average">XUẤT BẢNG ĐIỂM</a>
-                </li>
+<!--<<<<<<< HEAD-->
+                    <a href="{{ url_for('page_table_average',id_class =  class_name.id , id_subject =   subject.id ,
+
+                     id_school_year =  semester.id ) }}">XUẤT BẢN ĐIỂM MÔN HỌC</a>
+<!--=======-->
+<!--                    <a href="/table-average">XUẤT BẢNG ĐIỂM</a>-->
+<!--&gt;>>>>>> 0f07cb44d6818ff46de41565ef8d3844acdc610f-->
+               {% if user.id == class_name.id_teacher_in_charge %}
                 <li class="update_text">
                     <a href="/juge-comment">NHẬN XÉT</a>
                 </li>
+                {% endif %}
                 <li class="update_text">
-                    <a href="#header_culture_news">BÁO CÁO VÀ ĐÁNH GIÁ</a>
+                    <a href="{{ url_for('score_avg_semester_class', id_school_year = semester.id, id_class = class_name.id ) }}">Đánh Giá Học Lực Cuối Kỳ</a>
                 </li>
             </ul>
         </div>
@@ -60,7 +67,7 @@
 
                         {% for i in list_cell %}
                         <div class="cell_score">
-                            <input class="no-outline" type="text" id="{{ i.id }}" onblur="change_cell(this,{{ id_year }},{{ id_subject }} )"
+                            <input class="no-outline cell" type="text" id="{{ i.id }}" onblur="change_cell(this,{{ id_year }},{{ id_subject }} )"
                                onclick="hightline_student(this)"    value="{{ i.convert_list() }}" />
                         </div>
                         {% endfor %}
@@ -74,7 +81,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- <script>
         window.onscroll = function() {myFunction()};
@@ -96,13 +102,16 @@
 
 
 
-
+<
 </script> -->
  -->
+
+<button onclick="auto()"></button>
 
 
 <input type="hidden" id="hdnSession" data-value="@Request.RequestContext.HttpContext.Session['rule_subject']" />
 
 <script src="{{ url_for('static', filename='js/handle_score.js') }}"></script>
+
 
 {% endblock%}

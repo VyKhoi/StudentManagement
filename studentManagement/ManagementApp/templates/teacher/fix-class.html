@@ -22,37 +22,38 @@
                     </ul>
                 </div> -->
       <div class="col-sm-2 sidenav side_nav_news">
-        <h4 class="title_side_nav">Menu</h4>
+            <h4 class="title_side_nav">Menu</h4>
 
-        <ul class="nav nav-pills nav-stacked side_nav_news_list">
-          <li class="active"><a href="/receive_students">Tiếp nhận học sinh</a></li>
-          <li><a href="#header_culture_news">Lập danh sách lớp</a></li>
-          <li><a href="/fix-class">Quản lý lớp học</a></li>
-          <li class="active"><a href="/stats">Thống kê báo cáo</a></li>
-        </ul>
-      </div>
+            <ul class="nav nav-pills nav-stacked side_nav_news_list">
+                <li class="active"><a href="/receive_students">Tiếp nhận học sinh</a></li>
+                <li><a href="/list-class">Xem danh sách lớp</a></li>
+                <li><a href="/fix-class">Quản lý lớp học</a></li>
+                <li class="active"><a href="/stats">Thống kê báo cáo</a></li>
+                <li class="active"><a href="/add-teacher">Lập danh sách lớp</a></li>
+            </ul>
+        </div>
       <div class="col-sm-10 content_teaching_1">
         <form class="row form-comment" action="/fix-class" method="post" enctype="multipart/form-data">
 
                 <div class="col-md-6">
                   <label class="form-label"><i class="fa-solid fa-file-signature"></i>Tên lớp</label>
-                  <input type="text" placeholder="10A" name="name_class" class="form-control">
+                  <input type="text" placeholder="10A1" name="name_class" class="form-control" required>
                 </div>
 
 
                 <div class="col-md-6">
                   <label class="form-label"><i class="fa-solid fa-signature"></i>Năm học</label>
-                  <input type="text" placeholder="2021-2022" name="name_school_year" class="form-control">
+                  <input type="text" placeholder="2021-2022" name="name_school_year" class="form-control" required>
 
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="semester" id="inlineRadio1" value="HK1">
+                    <input class="form-check-input" type="radio" name="semester" id="inlineRadio1" value="HK1" required>
                     <label class="form-check-label" for="inlineRadio1" >HK1</label>
                   </div>
 
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="semester" id="inlineRadio2" value="HK2">
+                    <input class="form-check-input" type="radio" name="semester" id="inlineRadio2" value="HK2" required>
                     <label class="form-check-label" for="inlineRadio2" >HK2</label>
                   </div>
                 </div>
@@ -67,11 +68,11 @@
           <table class="table table-hover">
             <thead>
               <div class="year-of-school">
-                <div>Năm học: {{name_school_year}}</div>
+                <div >Năm học: {{name_school_year}}</div>
               </div>
               <tr>
                 <th scope="col">Lớp: </th>
-                <td colspan="5" class="student_name">{{name_class}}</td>
+                <td colspan="5"  class="student_name">{{name_class}}</td>
               </tr>
               <tr>
                 <th scope="col">Mã số</th>
@@ -101,13 +102,6 @@
             </tbody>
             {% endfor %}
           </table>
-          <nav aria-label="...">
-            <ul class="pagination pagination-lg">
-              <li class="page-item">
-                <a class="page-link" href="#">1</a>
-              </li>
-            </ul>
-          </nav>
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
@@ -120,43 +114,50 @@
           </ul>
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <form class="row form-comment">
-                <div class="col-md-6">
-                  <label class="form-label"><i class="fa-solid fa-file-signature"></i>Mã số</label>
-                  <input type="number" class="form-control" id="test-add-student" onchange="student_id()">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label"><i class="fa-solid fa-signature"></i>Họ và tên</label>
-                  <input type="text" class="form-control" id="name-student">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label"><i class="fa-solid fa-envelope"></i>Email</label>
-                  <input type="text" class="form-control" id="email-student">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label"><i class="fa-solid fa-cake-candles"></i>Ngày sinh</label>
-                  <input type="text" class="form-control" id="birthday-student">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label"><i class="fa-solid fa-house"></i>Quê quán</label>
-                  <input type="text" class="form-control" id="hometown-student">
-                </div>
+              <div class="row form-comment">
+                    <div class="col-md-6">
+                      <label class="form-label"><i class="fa-solid fa-file-signature"></i>Mã số</label>
+                      <input type="number" class="form-control" id="test-add-student" onchange="student_id()" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label"><i class="fa-solid fa-signature"></i>Họ và tên</label>
+                      <input type="text" class="form-control" id="name-student-add">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label"><i class="fa-solid fa-envelope"></i>Email</label>
+                      <input type="text" class="form-control" id="email-student-add">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label"><i class="fa-solid fa-cake-candles"></i>Ngày sinh</label>
+                      <input type="text" class="form-control" id="birthday-student-add">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label"><i class="fa-solid fa-house"></i>Quê quán</label>
+                      <input type="text" class="form-control" id="hometown-student-add">
+                    </div>
 
-                <div class="col-md-6">
-                  <label class="form-label"><i class="fa-solid fa-user"></i>Lớp</label>
-                  <input type="text" class="form-control" id="class-student" value="{{name_class}}">
-                </div>
-                <div class="col-md-12">
-                  <br>
-                  <button class="btn btn-primary form-control">THÊM</button>
-                </div>
-              </form>
+                    <div class="col-md-6">
+                      <label class="form-label"><i class="fa-solid fa-user"></i>Lớp</label>
+                      <input type="text" class="form-control" id="class-student-add" value="{{name_class}}" disabled="disabled" >
+                    </div>
+
+                    <div class="col-md-12">
+
+                      <br>
+                      <button class="btn btn-primary form-control"
+                              onclick="add_student_to_current_class(  {{ id_school_year }},{{ id_class }})">THÊM</button>
+                    </div>
+
+
+
+
+              </div>
             </div>
             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
               <form class="row form-comment">
                 <div class="col-md-6">
                   <label class="form-label"><i class="fa-solid fa-file-signature"></i>Mã số</label>
-                  <input type="number" class="form-control" id="test-add-student" onchange="student_id()">
+                  <input type="number" class="form-control" id="test-delete-student" onchange="delete_student_id()">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label"><i class="fa-solid fa-signature"></i>Họ và tên</label>
@@ -177,11 +178,12 @@
 
                 <div class="col-md-6">
                   <label class="form-label"><i class="fa-solid fa-user"></i>Lớp</label>
-                  <input type="text" class="form-control" id="class-student">
+                  <input type="text" class="form-control" id="class-student" value="{{name_class}}" disabled="disabled" >
                 </div>
                 <div class="col-md-12">
                   <br>
-                  <button class="btn btn-primary form-control">XÓA</button>
+                  <button class="btn btn-primary form-control"
+                          onclick="delete_student_to_current_class(  {{ id_school_year }},{{ id_class }})">XÓA</button >
                 </div>
               </form>
             </div>

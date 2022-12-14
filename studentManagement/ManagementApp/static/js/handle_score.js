@@ -70,11 +70,19 @@ function change_cell(cell, id_year, id_subject) {
                 let value = cell.value
         
                 if (value == "") {
+
+//                cũ
                     return
                     cell.value = value
+//
+
+//                    mới
+//                        cell.value = ""
                 }
         
-                console.log(id, value)
+                console.log("xuat id va gia tri cua cell",id, value)
+
+
                 value[value.leng - 1]
         
         
@@ -258,4 +266,37 @@ function hightline_student(cell){
     let student = document.getElementById(id_stu[0])
     console.log("student la ",student)
     student.style.backgroundColor = '#affffd'
+}
+
+
+
+function auto(){
+    list = document.getElementsByClassName('cell')
+    console.log(list)
+
+
+  
+    for(i = 0 ; i < list.length ; i = i + 3)
+    {
+        console.log(list[i])
+       let diem1 =  Math.floor(Math.random() * (10 - 5 + 1) + 5);
+       let diem2 = Math.floor(Math.random() * (10 - 5 + 1) + 5);
+       let diem3 =Math.floor(Math.random() * (10 - 5 + 1) + 5);
+    
+        valueee = `${diem1},${diem2},${diem3}`
+        list[i].value = valueee
+
+        let diem4 = Math.floor(Math.random() * (10 - 5 + 1) + 5);
+        let diem5 = Math.floor(Math.random() * (10 - 5 + 1) + 5);
+
+     
+        valueee = `${diem4},${diem5}`
+        list[i+1].value = valueee
+
+        let diem6 = Math.floor(Math.random() * (10 - 5 + 1) + 5);
+        valueee = `${diem6}`
+        list[i+2].value = valueee
+    }
+
+
 }
