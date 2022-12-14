@@ -24,6 +24,11 @@ class StudentView(ModelView):
     can_view_details = True
     form_excluded_columns = ['score', 'student_class_school_year','review']
 
+class Rule_view(ModelView):
+    can_view_details = True
+    form_excluded_columns = ['id_rules_table']
+    # form_excluded_columns = ['score', 'student_class_school_year','review']
+
 # admin.add_view(AuthenticatedModelView())
 # if AuthenticatedModelView() is True:
 #     print("oke true")
@@ -58,7 +63,7 @@ admin = Admin(app=app, name='Trang quản trị', template_mode='bootstrap4', in
 admin.add_view(ClassView(Class, db.session, name='Quản trị lớp'))
 admin.add_view(UserView(User, db.session, name='Quản trị giáo viên'))
 admin.add_view(StudentView(Student, db.session, name='Quản trị học sinh'))
-
+admin.add_view(Rule_view(Rule,db.session,name="Quy định nhà trường"))
 
 
 if __name__ == '__main__':

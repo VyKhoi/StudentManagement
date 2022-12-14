@@ -114,7 +114,7 @@ def page_not_found(e):
 app.add_url_rule('/receive_students','index_academic_staff_show',controllers.index_academic_staff_show)
 app.add_url_rule('/receive_students','index_academic_staff_post',controllers.add_student,methods = ['post'])
 
-app.add_url_rule('/stats','stats_show',controllers.stats_show)
+app.add_url_rule('/stats','stats_show',controllers.stats_show,methods = ['get','post'])
 
 #
 # @app.route('/receive_students', methods = ['post'])
@@ -139,8 +139,10 @@ def score_avg_semester_class(id_school_year, id_class):
     current_class = Class.query.get(id_class)
 
     list_student_and_avg = []
+
+    # truyền vào lớp
     for i in list_student:
-        list_student_and_avg.append(handle_score.get_info_semester_student(student=i,id_school_year=id_school_year))
+        list_student_and_avg.append(handle_score.get_info_semester_student(student=i,id_school_year=id_school_year,class_curnet=current_class))
 
     return  render_template('teacher/table-average_semester.html',
                             list_student_and_avg = list_student_and_avg,

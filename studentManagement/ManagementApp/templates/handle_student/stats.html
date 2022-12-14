@@ -2,7 +2,7 @@
 
 {% block css_import %}
 <link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet" type="text/css"/>
-
+<link href="{{ url_for('static', filename='css/table-average.css') }}" rel="stylesheet"/>
 {% endblock %}
 
 {% block content %}
@@ -37,45 +37,20 @@
                         <label class="form-label"> <i class="fa-solid fa-book"></i> Môn học</label>
                         <input required type="text" name="name_subjects" class="form-control">
                     </div>
-
                     <div class="col-md-4 register_box">
                         <label class="form-label"> <i class="fa-regular fa-calendar"></i> Năm học</label>
-                        <input required type="number" placeholder="2020" name ="school_year" class="form-control">
-                    </div>
-
-                    <div class="col-md-3 register_box">
-                        <label class="form-label"><i class="fa-solid fa-users"></i> Lớp</label>
-                        <select class="form-select">
-                            <option>10A</option>
-                            <option>10B</option>
-                            <option>10C</option>
-                                <option>11A</option>
-                                <option>11B</option>
-                                <option>11C</option>
-                            <option>12A</option>
-                            <option>12B</option>
-                            <option>12C</option>
-                        </select>
-                    </div>
-
-                     <div class="col-md-3 register_box">
-                        <label class="form-label"><i class="fa-solid fa-users-between-lines"></i> Sỉ số</label>
-                        <input type="text" placeholder="0-40" maxlength="2" pattern="[0-9]{2}" name="count_student" class="form-control">
-                    </div>
-
-                    <div class="col-md-2 register_box">
-
+                        <input required type="text" placeholder="2020-2021" name="school_year" class="form-control">
                     </div>
                     <div class="col-md-4 register_box">
                         <label class="form-label"><i class="fa-solid"></i>Học kỳ</label>
                         <br>
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" name="semester" value="1" checked>
-                            <label class="form-check-label">HKI</label>
+                            <input type="radio" class="form-check-input" name="semester" value="HK1" checked>
+                            <label class="form-check-label">HK 1</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input type="radio" class="form-check-input" value="2" name="semester">
-                            <label class="form-check-label">HKII</label>
+                            <input type="radio" class="form-check-input" value="HK2" name="semester">
+                            <label class="form-check-label">HK 2</label>
                         </div>
                     </div>
 
@@ -85,11 +60,88 @@
                         <button class=" fa-thin fa-chart-simple btn btn-primary form-control"> Thống kê</button>
                     </div>
                 </form>
+
+                {% if list_class %}
+                <!--                bảng báo câu -->
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th colspan="2" scope="col">Năm học: {{ school_year.name }}</th>
+                        <td scope="col" style="font-weight: bolder">Học Kỳ: {{ school_year.semester }}</td>
+                        <th colspan="2" scope="col">Môn học: {{ subject.name_subject }}</th>
+                    </tr>
+
+
+                    <tr>
+
+                        <th scope="col">Tên lớp</th>
+                        <th scope="col">Sỉ số</th>
+                        <th scope="col">Số lượng đạt</th>
+                        <th scope="col">Tỷ lệ</th>
+                    </tr>
+
+                    </thead>
+                    <tbody class="table-class-border">
+
+                    {% for i in list_class %}
+                    <tr>
+                        <th scope="row" class="name_class_avg">{{ i['name_class'] }}</th>
+                        <td colspan="1" class="amount_class_avg_sub">{{ i['amount'] }}</td>
+                        <td class="stu_oke">{{ i['stu_oke'] }}</td>
+
+                        <td class="rate_class">{{ i['rate'] }} %</td>
+                    </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </div>
+            <!--bieu do-->
+            <div>
+                <canvas id="myChart"></canvas>
             </div>
 
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="{{ url_for('static', filename='js/chart_js.js') }}"></script>
+            <script>
+                    let list  = document.getElementsByClassName('name_class_avg')
+                    var list_name_class = []
+                    for(i = 0 ; i < list.length ; i++)
+                    {
+                               list_name_class.push(list[i].innerHTML)
+                    }
+
+                   let list_amount  = document.getElementsByClassName('amount_class_avg_sub')
+                   var list_amount_class = []
+                   for(i = 0 ; i < list_amount.length ; i++)
+                   {
+
+                            console.log(list_amount[i].innerHTML)
+                           list_amount_class.push(list_amount[i].innerHTML)
+                   }
+                
+
+                   let list_stu_oke  = document.getElementsByClassName('stu_oke')
+                   var list_stu_oke_class = []
+                   for(i = 0 ; i < list_stu_oke.length ; i++)
+                   {
+
+
+                            list_stu_oke_class.push(list_stu_oke[i].innerHTML)
+                   }
+
+                window.onload = function(){
+                    drawChartJs(list_name_class,list_amount_class,list_stu_oke_class)
+                }
+            </script>
+
+
+                {% endif %}
         </div>
 
     </div>
 </div>
+
 
 {% endblock %}

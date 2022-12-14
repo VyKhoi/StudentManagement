@@ -2,6 +2,8 @@ import math
 
 import flask_login
 from flask import session
+from unicodedata import name
+
 from StudentManagement.studentManagement.ManagementApp import dao
 from StudentManagement.studentManagement.ManagementApp import get_data_news
 from StudentManagement.studentManagement.ManagementApp.management_database import *
@@ -358,5 +360,41 @@ def page_table_average(id_class,id_subject,id_school_year):
 
 # page xuất báo cáo giáo vụ
 def stats_show():
-    return render_template('handle_student/stats.html')
+    if request.method.__eq__('POST'):
+        print("hello")
+        year = request.form.get('school_year')
 
+        # lấy đc năm bắt đầu và năm kết thúc
+        years = list(year.split("-"))
+        print(years)
+
+        name_subject =  request.form.get('name_subjects')
+        semester = request.form.get('semester')
+
+        school_year = School_Year.query.filter(
+            School_Year.year_start.__eq__(years[0]),
+            School_Year.year_end.__eq__(years[1]),
+            School_Year.semester.__eq__(semester)
+        ).all()[0]
+
+
+        subject = Subjects.query.filter(Subjects.name_subject.contains(name_subject)).all()[0]
+        print(subject)
+
+        print("school yea lay ra dc la", school_year)
+        print("bao cao ", year, name_subject, semester)
+
+        list_class = handle_score.rate_student_qualified_subject_in_class(id_school_year=school_year.id,id_subject=subject.id)
+        print(list_class)
+
+        name_list_class = []
+        for i in list_class:
+            name_list_class.append(i['name_class'])
+
+        return render_template('handle_student/stats.html',
+                           list_class = list_class,
+                           school_year = school_year,
+                           subject = subject,
+                            name_list_class = name_list_class
+                           )
+    return render_template('handle_student/stats.html')

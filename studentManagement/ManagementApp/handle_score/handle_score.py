@@ -96,7 +96,7 @@ def get_score_student(id_student, id_subject, id_school_year):
                               ).all()
 
 
-# tính điểm trung bình học sinh theo môn học, theo năm học
+# tính điểm trung bình học sinh theo môn học, theo hoc ky
 def get_average_subject_student(id_student, id_subject, id_school_year):
     list_score = get_score_student(id_student=id_student, id_subject= id_subject, id_school_year = id_school_year)
     print(list_score)
@@ -406,8 +406,10 @@ def get_achivement_student(avg_semester,list_tmp_subjects):
 
 #
 # tính điểm trung bình 1 học kỳ của 1 học sinh
-def get_info_semester_student(student,id_school_year):
-    subject_learn = Subjects.query.filter(Subjects.name_subject.contains(10)).all()
+def get_info_semester_student(student,id_school_year,class_curnet):
+    name_grade = class_curnet.name_class[0:2]
+    print("Khối lớp là ",name_grade)
+    subject_learn = Subjects.query.filter(Subjects.name_subject.contains(name_grade)).all()
 
 
     list_tmp_subjects = []
@@ -441,35 +443,86 @@ def get_info_semester_student(student,id_school_year):
         'avg_semester' : avg_semester
     }
 
-# def avg_year_subject(id_subject, id_student,start_year , end_):
+
+
+#  tính điểm tb cả năm học, môn học
+def avg_year_subject_student(id_subject, id_student ,start_year , end_year):
+    id_semester_in_year = School_Year.query.filter(
+        School_Year.year_start.__eq__(start_year),
+        School_Year.year_end.__eq__(end_year)).all()
+
+    print(id_semester_in_year)
+
+    avg_score_semester_1 = get_average_subject_student(id_student=id_student,id_subject=id_subject,id_school_year=id_semester_in_year[0].id)
+    avg_score_semester_2 = get_average_subject_student(id_student=id_student,id_subject=id_subject,id_school_year=id_semester_in_year[1].id)
+    print("diem trung binh hk 1 la " , avg_score_semester_1," hoc ky 2", avg_score_semester_2)
+
+    avg_year = (avg_score_semester_1 + avg_score_semester_2* 2)/3
+    return round(avg_year,2)
+
+# def can_up_class(id_student,start_year,end_year):
+
+# # tỉ lệ học sinh đậu, trong lớp ( tên lớp để láy ra đc 2 lớp của 2 hk)
+# def rate_of_student_up_class(name_class, start_year, end_year):
+#     list_student = get_students_in_class()
+
+
+
+# lấy các lớp
+def rate_student_qualified_subject_in_class(id_school_year, id_subject):
+    subject =  Subjects.query.get(id_subject)
+
+    k = subject.name_subject[-2:]
+    print(k) #lấy khối
+
+    # lấy đc lớp trong khối
+    class_learn_subject = Class.query.filter(
+                    Class.name_class.startswith(str(k)),
+        Class.id_school_year.__eq__(id_school_year)).all()
+
+    print(class_learn_subject)
+
+
+    l = []
+    stu_oke = 0
+    # duyệt lớp
+    for i in class_learn_subject:
+    # luu list student_clas_school_year trong 1 lớp
+        list_s_c_y = i.student_class_school_year
+        # print(len(i.student_class_school_year))
+        # duyệ hs trong 1 lớp
+        for j in list_s_c_y:
+             # lấy điểm tb hk của 1 hs với môn học
+             avg = get_average_subject_student(id_student = j.id_student,id_subject = id_subject,id_school_year=j.id_school_year)
+             # print("diem trung binh la ", avg)
+             if avg > 5:
+                 stu_oke = stu_oke + 1
+             # print("hoc sinh và điểm trung bình  ", j.Student.name , avg)
+
+        rate = round( (stu_oke/len(i.student_class_school_year)) * 100 , 3 )
+        l.append({
+            'name_class' : i.name_class,
+            'amount' : len(i.student_class_school_year),
+            'stu_oke' : stu_oke,
+            'rate' : rate
+        })
+        stu_oke = 0
+
+    # print(l)
+
+    return l
+
+        # print("hoc sinh ",l)
+
+
 
 
 if __name__ == '__main__':
     with app.app_context():
-        print("hello")
-        print("ddieerm trung binh hoc ky 1 hs soos 1 laf ",get_info_semester_student(Student.query.get(11),2))
-        #
-        # print(get_ratio_average_subject(1))
-        # print("điểm trung binh môn sinh 10 của hs 1 là" ,
-        #       get_average_subject_student(id_student=1,id_subject=7,id_school_year=1))
-        #
-        #
-        # #lấy hoc sinh trong lớp id 1
-        #
-        # print(get_students_in_class(1,1))
-
-        # for i in scores:
-        #     print(i.values," thể loại điểm là  ", i.type_score)
-
-        # # lấy tất cả học sinh trong id year 1, môn 1, lớp 1
-        # print("test học sinh",get_average_subject_student(id_student=1,id_subject=4,id_school_year=1))
-        #
-        #
-        # l = []
-        # list_student = get_students_in_class(id_class=1,id_year=1)
-        # for i in list_student:
-        #     u = get_infor_student_and_avg(student=i,id_subject=4,id_school_year=1)
-        #     l.append(u)
-        #     print(u['name']," diem trung ",u['avg'])
-        #
-        # print(l)
+        # print("hello")
+        s = Student.query.get(1)
+        c = Class.query.get(1)
+        # print(avg_year_subject_student(id_subject=1,id_student=1,start_year=2020,end_year=2021))
+        # print("ddieerm trung binh hoc ky 1 hs soos 1 laf ",get_info_semester_student(Student.que
+        # ry.get(7),1))
+        print(rate_student_qualified_subject_in_class(id_school_year=1,id_subject=1))

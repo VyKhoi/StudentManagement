@@ -211,6 +211,9 @@ class RulesTable(db.Model):
     name = Column(String(50), nullable=False)
     Rule =  relationship('Rule', backref='RulesTable', lazy=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Rule(db.Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
