@@ -1,0 +1,113 @@
+{% extends 'layout/base.html' %}
+{% block css_import %}
+<link href="{{ url_for('static', filename='css/add-teacher.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content%}
+    <div class="container">
+        <div class="container-fluid box_content">
+            <div class="row content">
+                <div class="col-sm-2 sidenav side_nav_news">
+            <h4 class="title_side_nav">Menu</h4>
+
+            <ul class="nav nav-pills nav-stacked side_nav_news_list">
+                <li class="active"><a href="/receive_students">Tiếp nhận học sinh</a></li>
+                <li><a href="/list-class">Xem danh sách lớp</a></li>
+                <li><a href="/fix-class">Quản lý lớp học</a></li>
+                <li class="active"><a href="/stats">Thống kê báo cáo</a></li>
+                <li class="active"><a href="/add-teacher">Lập danh sách lớp</a></li>
+            </ul>
+        </div>
+                <div class="col-sm-10 content_teaching_1">
+                  <form class="row form-comment">
+                    <div class="col-md-6">
+                      <label class="form-label"><i class="fa-solid fa-file-signature"></i>Khối</label>
+                      <input type="text" placeholder="10" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                      <label class="form-label"><i class="fa-solid fa-signature"></i>Năm học</label>
+                      <input type="text" placeholder="2021-2022" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                      <br>
+                      <button class="btn btn-primary form-control">KIỂM TRA</button>
+                    </div>
+                  </form>
+                    <div class="container mt-3">
+                      <div class="table-average" style="text-align: center">LẬP DANH SÁCH LỚP</div>
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th scope="col">NĂM HỌC</th>
+                          </tr>
+                          <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Lớp</th>
+                            <th scope="col">Sỉ số</th>
+                            <th scope="col">Giáo viên chủ nhiệm</th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-class-border">
+                          <tr>
+                            <th scope="row" class="student-id center-line">1</th>
+                            <td colspan="1" class="class-name-id center-line">10A</td>
+                            <td class="score-oral center-line"> 40 </td>
+                            <td class="score-oral">
+                              <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Giáo viên chủ nhiệm
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <li><a class="dropdown-item" href="#">Võ Hữu Nghĩa</a></li>
+                                  <li><a class="dropdown-item" href="#">Đặng Vỹ Khôi</a></li>
+                                  <li><a class="dropdown-item" href="#">Đặng Vỹ Khôi</a></li>
+                                  <li><a class="dropdown-item" href="#">Đặng Vỹ Khôi</a></li>
+                                  <li><a class="dropdown-item" href="#">Đặng Vỹ Khôi</a></li>
+                                  <li><a class="dropdown-item" href="#">Đặng Vỹ Khôi</a></li>
+                                  <li><a class="dropdown-item" href="#">Đặng Vỹ Khôi</a></li>
+                                </ul>
+                              </div>
+                            </td>
+                          </tr>
+
+                        </tbody>
+
+                      </table>
+                      <nav aria-label="...">
+                        <ul class="pagination pagination-lg">
+                          <li class="page-item">
+                            <a class="page-link" href="#">1</a>
+                          </li>
+                        </ul>
+                      </nav>
+
+
+                    </div>
+                    </div>
+
+                  </div>
+
+              </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        window.onscroll = function() {myFunction()};
+
+        var header = document.getElementById("myHeader");
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+          if (window.pageYOffset >= sticky) {
+            header.classList.add("sticky");
+          } else {
+            header.classList.remove("sticky");
+          }
+        }
+    </script>
+{%endblock%}
+
+
+

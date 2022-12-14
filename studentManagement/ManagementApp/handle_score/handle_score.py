@@ -519,10 +519,5 @@ def rate_student_qualified_subject_in_class(id_school_year, id_subject):
 
 if __name__ == '__main__':
     with app.app_context():
-        # print("hello")
-        s = Student.query.get(1)
-        c = Class.query.get(1)
-        # print(avg_year_subject_student(id_subject=1,id_student=1,start_year=2020,end_year=2021))
-        # print("ddieerm trung binh hoc ky 1 hs soos 1 laf ",get_info_semester_student(Student.que
-        # ry.get(7),1))
-        print(rate_student_qualified_subject_in_class(id_school_year=1,id_subject=1))
+        print("hello")
+

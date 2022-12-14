@@ -1,0 +1,131 @@
+{% extends 'layout/base.html' %}
+{% block css_import %}
+<link href="{{ url_for('static', filename='css/fix-class.css') }}" rel="stylesheet" />
+{% endblock %}
+{% block content%}
+<div class="container">
+  <div class="container-fluid box_content">
+    <div class="row content">
+      <!-- <div class="col-sm-2 sidenav content_teaching" id="myHeader">
+                    <h4 class="title_side_nav">Chức năng</h4>
+
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active update_text">
+                            <a href="#header_common_news">Xuất bản điểm</a>
+                        </li>
+                        <li class="update_text">
+                            <a href="#header_culture_news">Đánh giá</a>
+                        </li>
+                        <li class="update_text">
+                            <a href="#header_culture_news">Báo cáo và đánh giá</a>
+                        </li>
+                    </ul>
+                </div> -->
+     <div class="col-sm-2 sidenav side_nav_news">
+            <h4 class="title_side_nav">Menu</h4>
+
+            <ul class="nav nav-pills nav-stacked side_nav_news_list">
+                <li class="active"><a href="/receive_students">Tiếp nhận học sinh</a></li>
+                <li><a href="/list-class">Xem danh sách lớp</a></li>
+                <li><a href="/fix-class">Quản lý lớp học</a></li>
+                <li class="active"><a href="/stats">Thống kê báo cáo</a></li>
+                <li class="active"><a href="/add-teacher">Lập danh sách lớp</a></li>
+            </ul>
+        </div>
+      <div class="col-sm-10 content_teaching_1">
+        <form class="row form-comment" action="/list-class" method="post" enctype="multipart/form-data">
+
+                <div class="col-md-6">
+                  <label class="form-label"><i class="fa-solid fa-file-signature"></i>Tên lớp</label>
+                  <input type="text" placeholder="10A1" name="name_class" class="form-control" required>
+                </div>
+
+
+                <div class="col-md-6">
+                  <label class="form-label"><i class="fa-solid fa-signature"></i>Năm học</label>
+                  <input type="text" placeholder="2021-2022" name="name_school_year" class="form-control" required>
+
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="semester" id="inlineRadio1" value="HK1" required>
+                    <label class="form-check-label" for="inlineRadio1" >HK1</label>
+                  </div>
+
+
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="semester" id="inlineRadio2" value="HK2" required>
+                    <label class="form-check-label" for="inlineRadio2" >HK2</label>
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+                  <br>
+                  <button type="submit" class="btn btn-primary form-control">KIỂM TRA</button>
+                </div>
+        </form>
+        <div class="container mt-3">
+          <div class="table-average">DANH SÁCH LỚP</div>
+          <table class="table table-hover">
+            <thead>
+              <div class="year-of-school">
+                <div >Năm học: {{name_school_year}}</div>
+              </div>
+              <tr>
+                <th scope="col">Lớp: </th>
+                <td colspan="5"  class="student_name">{{name_class}}</td>
+              </tr>
+              <tr>
+                <th scope="col">Mã số</th>
+                <th scope="col">Họ và tên</th>
+                <th scope="col">Ngày sinh</th>
+                <th scope="col">Quê quán</th>
+                <th scope="col">Giới tính</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            {% for i in list_id_student_class_school_year%}
+            <tbody class="table-class-border">
+              <tr>
+                <th scope="row" class="student-id">{{i.Student.id}}</th>
+                <td colspan="1" class="student_name">{{i.Student.name}}</td>
+                <td class="score-oral"> {{i.Student.birthday}} </td>
+                <td class="score-15-minute">{{i.Student.hometown}}</td>
+                {% if i.Student.gender == 0 %}
+                <td class="score-oral"> Nam </td>
+                {% endif %}
+
+                {% if i.Student.gender == 1 %}
+                <td class="score-oral"> Nữ </td>
+                {% endif %}
+                <td class="score-15-minute">{{i.Student.email}}</td>
+              </tr>
+            </tbody>
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+</div>
+<script>
+  window.onscroll = function () { myFunction() };
+
+  var header = document.getElementById("myHeader");
+  var sticky = header.offsetTop - 121.08;
+
+  function myFunction() {
+    if (window.pageYOffset >= sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
+</script>
+{% endblock%}

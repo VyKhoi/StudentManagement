@@ -164,18 +164,27 @@ def add_class():
     student_json = request.json  #nhận json yêu cầu lấy studetn với id
     print("truoc khi convert", student_json, type(student_json))
 
-    student = Student.query.get( int( student_json['id'] ))
-    print("student lấy đc ",student,type(student))
+    student = Student.query.get( int(student_json['id']) )
 
     stu = convert_student_to_json(student)
 
     obj_student = json.dumps(stu) #chuyển sang json
 
+    return jsonify(obj_student)
 
-    # print("student sau khi chuyesausang json",str( obj_stu)
+@app.route('/api/delete-class', methods=['get','post'])
+def delete_class():
+    # import pdb
+    # pdb.set_trace()
+    student_json = request.json  #nhận json yêu cầu lấy studetn với id
+    print("truoc khi convert", student_json, type(student_json))
 
-    # print(type(obj_student))
-    #
+    student = Student.query.get( int(student_json['id']) )
+
+    stu = convert_student_to_json(student)
+
+    obj_student = json.dumps(stu) #chuyển sang json
+
     return jsonify(obj_student)
 #xóa học sinh trong lớp
 # @app.route('/api/remove-class', methods=['get','post'])
